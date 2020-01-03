@@ -1,12 +1,33 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">
+        Home
+      </router-link> |
+      <router-link to="/organisation">
+        Verein
+      </router-link>
+      <router-link to="/history">
+        History
+      </router-link>
     </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+  export default {
+    metaInfo: {
+      // if no subcomponents specify a metaInfo.title, this title will be used
+      title: 'Home',
+      // all titles will be injected into this template
+      titleTemplate: '%s | Sportfischerverein Romanshorn',
+      htmlAttrs: {
+        lang: 'de',
+      },
+    },
+  };
+</script>
 
 <style lang="scss">
 #app {
