@@ -37,7 +37,10 @@
       </nav>
 
       <!-- Logo / Home link -->
-      <router-link to="/" title="zur Startseite" :class="b('link', { logo: true })">
+      <router-link to="/"
+                   title="zur Startseite"
+                   :class="b('link', { logo: true })"
+                   @click.native="mobileNavigationIsOpen = false">
         <span class="invisible">zur Startseite</span>
         <img src="../assets/logo.png" alt="Logo Sportfischerverein Romanshorn" :class="b('logo')">
       </router-link>
@@ -317,8 +320,13 @@
     &__navigation {
       flex-grow: 1;
       flex-shrink: 0;
-      flex-basis: calc(50% - 100px);
-      max-width: calc(50% - 100px);
+      flex-basis: calc(50% - 50px);
+      max-width: calc(50% - 50px);
+
+      @include media(md) {
+        flex-basis: calc(50% - 100px);
+        max-width: calc(50% - 100px);
+      }
     }
 
     &__navigation--desktop {
@@ -359,8 +367,12 @@
       align-items: center;
       position: relative;
       border-bottom: 4px solid transparent;
-      min-width: 200px;
+      min-width: 160px;
       justify-content: center;
+
+      @include media(md) {
+        min-width: 200px;
+      }
     }
 
     &__list-item--active {
@@ -394,6 +406,11 @@
       padding: 0;
 
       @include media(sm) {
+        flex: 1 0 100px;
+        max-width: 100px;
+      }
+
+      @include media(md) {
         flex: 1 0 200px;
         max-width: 200px;
       }
@@ -432,8 +449,6 @@
 
       @include media(sm) {
         position: absolute;
-        max-width: none;
-        max-height: none;
       }
     }
 
@@ -445,8 +460,12 @@
       transform-origin: top;
       background-color: $color-grayscale--0;
       top: 60px;
-      min-width: 200px;
+      min-width: 160px;
       transition: all 200ms ease-out;
+
+      @include media(md) {
+        min-width: 200px;
+      }
     }
 
     &__sub-level-list-item {
