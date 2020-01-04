@@ -120,6 +120,7 @@
 </template>
 
 <script>
+
   /**
    * This component renderes the main header with the navigation for desktop and mobile.
    */
