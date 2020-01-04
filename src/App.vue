@@ -1,22 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">
-        Home
-      </router-link> |
-      <router-link to="/organisation">
-        Verein
-      </router-link>
-      <router-link to="/history">
-        History
-      </router-link>
-    </div>
-    <router-view />
+    <l-default>
+      <router-view />
+    </l-default>
   </div>
 </template>
 
 <script>
+  import lDefault from './components/l-default';
+
   export default {
+    components: {
+      lDefault,
+    },
     metaInfo: {
       // if no subcomponents specify a metaInfo.title, this title will be used
       title: 'Home',

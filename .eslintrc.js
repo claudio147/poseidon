@@ -44,7 +44,7 @@ module.exports = {
       vue: 'never'
     }],
     'vue/attributes-order': [2, {
-      'order': [
+      order: [
         'CONDITIONALS',
         [
           'LIST_RENDERING',
@@ -60,7 +60,9 @@ module.exports = {
         'EVENTS',
       ]
     }],
-    "id-length": [2, {"min": 3, "max": 10, "properties": "never", "exceptions": ["x", "to"]}]
+    'id-length': [2, {
+ min: 3, max: 99, properties: 'never', exceptions: ['x', 'to']
+}]
   },
   globals: {
   }
