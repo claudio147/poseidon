@@ -61,8 +61,8 @@ module.exports = {
       ]
     }],
     'id-length': [2, {
- min: 3, max: 99, properties: 'never', exceptions: ['x', 'to']
-}]
+     min: 3, max: 99, properties: 'never', exceptions: ['x', 'to']
+    }],
   },
   globals: {
   }

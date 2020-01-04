@@ -4,39 +4,49 @@ body {
   font-family: $font-family--primary;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $color-grayscale--1000;
+  background-color: #f1f1f1;
 }
 
 h1 {
   @include font($font-size--18);
+
+  font-family: $font-family--primary;
 }
 
 h2 {
   @include font($font-size--16);
+
+  font-family: $font-family--primary;
 }
 
 h3 {
   @include font($font-size--14);
+
+  font-family: $font-family--primary;
 }
 
 h4 {
   @include font($font-size--14);
 
+  font-family: $font-family--primary;
   font-weight: $font-weight--bold;
 }
 
 h5 {
   @include font($font-size--14);
 
+  font-family: $font-family--primary;
   font-weight: $font-weight--semi-bold;
 }
 
 h6 {
   @include font($font-size--14);
+
+  font-family: $font-family--primary;
 }
 
 p {
-  @include font($font-size--14);
+  @include font($font-size--18);
 
   font-weight: 400;
 }

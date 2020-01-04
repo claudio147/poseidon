@@ -266,8 +266,6 @@
       onClickMobileNavigation(event, navItem) {
         const { children, link } = navItem || {};
 
-        console.log('children', children);
-
         if (children && children.length) {
           if (this.openSubLevel !== link) {
             this.openSubLevel = link;
