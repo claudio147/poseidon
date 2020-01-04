@@ -37,5 +37,6 @@
 <style lang="scss">
   .c-main-footer {
     background-color: aquamarine;
+    min-height: 60px;
   }
 </style>

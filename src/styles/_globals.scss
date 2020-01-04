@@ -1,0 +1,19 @@
+// Variables, mixins and functions
+// NOTE: globals must also be imported in webpack.config.js via 'sass-resources-loader'
+@import "./globals/variables";
+@import "./globals/config";
+@import "./globals/functions";
+@import "./globals/mixins";
+@import "./globals/extends";
+
+// Font imports
+@import "./globals/font";
+
+// Style reboot
+@import "./globals/reboot";
+
+// Global styles
+@import "./globals/spacings";
+@import "./globals/global";
+
+$contentWidth: 1440px;
