@@ -296,6 +296,7 @@
     display: flex;
     justify-content: center;
     min-height: 75px;
+    z-index: 100;
 
     @include media(sm) {
       min-height: 60px;

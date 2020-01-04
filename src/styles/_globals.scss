@@ -16,4 +16,8 @@
 @import "./globals/spacings";
 @import "./globals/global";
 
+// Vendor styles
+// - Note: don't add *.css extension to import. Else the style will be moved to top of output file!
+@import "~swiper/dist/css/swiper";
+
 $contentWidth: 1440px;
