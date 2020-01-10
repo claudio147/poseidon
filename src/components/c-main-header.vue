@@ -42,7 +42,7 @@
                    :class="b('link', { logo: true })"
                    @click.native="mobileNavigationIsOpen = false">
         <span class="invisible">zur Startseite</span>
-        <img src="../assets/logo.png" alt="Logo Sportfischerverein Romanshorn" :class="b('logo')">
+        <img src="../assets/logo_200x160.png" alt="Logo Sportfischerverein Romanshorn" :class="b('logo')">
       </router-link>
 
       <!-- Navigation Desktop rechts -->
@@ -396,15 +396,17 @@
     }
 
     &__link--logo {
-      display: flex;
+      display: block;
       justify-content: center;
       position: relative;
       flex: 1 0 100px;
       max-width: 100px;
       max-height: 60px;
-      padding: 0;
+      padding: $spacing--10;
 
       @include media(sm) {
+        display: flex;
+        padding: 0;
         flex: 1 0 100px;
         max-width: 100px;
       }
@@ -444,10 +446,11 @@
 
     &__logo {
       max-width: 100%;
-      max-height: 100%;
+      max-height: calc(100% + 15px);
 
       @include media(sm) {
         position: absolute;
+        bottom: -$spacing--20;
       }
     }
 

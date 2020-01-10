@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <c-slider :slides="slides" />
+    <div :class="b('content')">
+      <div :class="b('content-inner', { slider: true })">
+        <c-slider :slides="slides" />
+      </div>
+    </div>
     <div :class="b('content')">
       <div :class="b('content-inner')">
         <!-- Intro -->
@@ -75,6 +79,10 @@
         flex: 1 0 $contentWidth;
         max-width: $contentWidth;
       }
+    }
+
+    &__content-inner--slider {
+      padding: 0;
     }
 
     &__intro {
