@@ -7,6 +7,7 @@ import StoryblokVue from 'storyblok-vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import dayjs from './plugins/dayjs';
 
 Vue.config.productionTip = false;
 Vue.use(vueBemCn);
@@ -16,6 +17,7 @@ Vue.use(VueMeta, {
 Vue.use(VueAwesomeSwiper);
 Vue.use(Vuex);
 Vue.use(StoryblokVue);
+Vue.use(dayjs);
 
 window.vm = new Vue({ store });
 

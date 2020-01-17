@@ -8,8 +8,9 @@
 
     <!-- Content -->
     <div :class="b('content')">
-      <div :class="b('date')">
-        {{ news.date }}
+      <div v-if="dateFormatted"
+           :class="b('date')">
+        {{ dateFormatted }}
       </div>
       <h3 :class="b('title')">
         {{ news.title }}
@@ -65,6 +66,17 @@
         const { image } = this.news || {};
 
         return image || null;
+      },
+
+      /**
+       * Gets the formatted date (for e.g. 15. Januar 2020).
+       *
+       * @returns {String}
+       */
+      dateFormatted() {
+        const { date } = this.news || {};
+
+        return date ? this.$dayjs(date).format('DD. MMMM YYYY') : null;
       },
     },
     // watch: {},
