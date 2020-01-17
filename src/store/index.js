@@ -116,7 +116,7 @@ const store = new Vuex.Store({
             },
             teaserText: story.content.teaserText,
             text: story.content.text,
-            date: new Date(story.content.date),
+            date: new Date(story.content.date.split('-').join('/')),
             keywords: story.content.keywords,
           })));
           commit('setRunningRequest', { id: 'fetchnews', isRunning: false });
