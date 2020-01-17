@@ -15,7 +15,7 @@
         {{ news.title }}
       </h3>
       <p :class="b('text')">
-        {{ news.text }}
+        {{ news.teaserText }}
       </p>
     </div>
   </router-link>
@@ -65,7 +65,7 @@
         const { image } = this.news || {};
 
         return image || null;
-      }
+      },
     },
     // watch: {},
 

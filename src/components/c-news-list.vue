@@ -1,6 +1,6 @@
 <template>
   <ul :class="b()">
-    <li v-for="item in test" :key="item.id" :class="b('item')">
+    <li v-for="item in computedNewsList" :key="item.id" :class="b('item')">
       <c-news-teaser :news="item" />
     </li>
   </ul>
@@ -8,73 +8,47 @@
 
 <script>
   import cNewsTeaser from './c-news-teaser';
+  import news from '../mixins/news';
 
+  /**
+   * This component renders a list of news teaser items.
+   */
   export default {
     name: 'c-news-list',
     components: {
       cNewsTeaser,
     },
-    // mixins: [],
+    mixins: [
+      news,
+    ],
 
-    // props: {},
-    data() {
-      return {
-        test: [
-          {
-            id: 'abc',
-            title: 'Fischessen verschoben auf 24. Feb 2020',
-            image: {
-              src: 'https://recipecontent.fooby.ch/10748_3-2_1560-1040.jpg',
-              alt: 'Fischessen',
-            },
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            date: '01.01.2020',
-          },
-          {
-            id: '123',
-            title: 'Aalfischen 25. Januar 2020',
-            image: {
-              src: 'https://recipecontent.fooby.ch/10748_3-2_1560-1040.jpg',
-              alt: 'Fischessen',
-            },
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            date: '15.01.2020',
-          },
-          {
-            id: '123',
-            title: 'Aalfischen 25. Januar 2020',
-            image: {
-              src: 'https://recipecontent.fooby.ch/10748_3-2_1560-1040.jpg',
-              alt: 'Fischessen',
-            },
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            date: '15.01.2020',
-          },
-          {
-            id: '123',
-            title: 'Aalfischen 25. Januar 2020',
-            image: {
-              src: 'https://recipecontent.fooby.ch/10748_3-2_1560-1040.jpg',
-              alt: 'Fischessen',
-            },
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            date: '15.01.2020',
-          },
-          {
-            id: '123',
-            title: 'Aalfischen 25. Januar 2020',
-            image: {
-              src: 'https://recipecontent.fooby.ch/10748_3-2_1560-1040.jpg',
-              alt: 'Fischessen',
-            },
-            text: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-            date: '15.01.2020',
-          },
-        ]
-      };
+    props: {
+      /**
+       * Defines the maximum amount of items to show.
+       */
+      maxItems: {
+        type: Number,
+        default: 0,
+      }
     },
+    // data() {
+    //   return {};
+    // },
 
-    // computed: {},
+    computed: {
+      /**
+       * Gets the news items from the vuex store.
+       *
+       * @returns {Array.<Object>}
+       */
+      computedNewsList() {
+        if (Array.isArray(this.newsList)) {
+          return this.maxItems > 0 ? this.newsList.slice(0, this.maxItems) : this.newsList;
+        }
+
+        return [];
+      }
+    },
     // watch: {},
 
     // beforeCreate() {},

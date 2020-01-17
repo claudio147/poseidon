@@ -22,6 +22,13 @@
         lang: 'de',
       },
     },
+
+    created() {
+      // Initializes the storyblok instance.
+      this.$storyblok.init({
+        accessToken: '84Gnj7hdJqclcGCBaTpdOAtt'
+      });
+    }
   };
 </script>
 

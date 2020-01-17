@@ -1,13 +1,21 @@
 <template>
   <div :class="b()">
     <h1>News</h1>
+    <c-news-list />
   </div>
 </template>
 
 <script>
+  import cNewsList from '../components/c-news-list';
+
+  /**
+   * Renders the news overview page.
+   */
   export default {
     name: 'news',
-    // components: {},
+    components: {
+      cNewsList,
+    },
     // mixins: [],
 
     // props: {},

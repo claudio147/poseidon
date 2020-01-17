@@ -14,7 +14,14 @@
         <div :class="b('intro')">
           <div :class="b('intro-left')">
             <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet....
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+              eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetet
+              ur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ma
+              gna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+              et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d
+              olor sit amet....
             </p>
           </div>
           <div :class="b('intro-right')">
@@ -28,7 +35,7 @@
         </h1>
         <div>
           Add News Teaser...
-          <c-news-list />
+          <c-news-list :max-items="2" />
         </div>
       </div>
     </div>
