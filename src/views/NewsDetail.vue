@@ -19,6 +19,25 @@
       news,
     ],
 
+    // Meta information
+    metaInfo() {
+      return {
+        title: this.newsEntry && this.newsEntry.title,
+        meta: [
+          {
+            vmid: 'description',
+            name: 'description',
+            content: this.newsEntry && this.newsEntry.teaserText,
+          },
+          {
+            vmid: 'keywords',
+            name: 'keywords',
+            content: this.newsEntry && this.newsEntry.keywords,
+          }
+        ]
+      };
+    },
+
     // props: {},
     data() {
       return {
