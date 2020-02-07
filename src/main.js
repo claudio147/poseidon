@@ -4,6 +4,8 @@ import VueMeta from 'vue-meta';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 import Vuex from 'vuex';
 import StoryblokVue from 'storyblok-vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -18,6 +20,7 @@ Vue.use(VueAwesomeSwiper);
 Vue.use(Vuex);
 Vue.use(StoryblokVue);
 Vue.use(dayjs);
+Vue.use(VueAxios, axios);
 
 window.vm = new Vue({ store });
 
