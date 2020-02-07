@@ -1,23 +1,17 @@
 <template>
   <div :class="b()">
-    <c-main-header />
     <div :class="b('content')">
-      <slot></slot>
+      <div :class="b('inner')">
+        <slot></slot>
+      </div>
     </div>
-    <c-main-footer />
   </div>
 </template>
 
 <script>
-  import cMainHeader from './c-main-header';
-  import cMainFooter from './c-main-footer';
-
   export default {
     name: 'l-default',
-    components: {
-      cMainHeader,
-      cMainFooter,
-    },
+    // components: {},
     // mixins: [],
 
     // props: {},
@@ -46,13 +40,27 @@
 
 <style lang="scss">
   .l-default {
-    &__content {
-      padding-top: 75px; // Header height
-      min-height: calc(100vh - 60px); // 100vh - footer height
+    padding-top: 75px; // Header height
+    min-height: calc(100vh - 60px); // 100vh - footer height
 
-      @include media(sm) {
-        padding-top: 60px; // Header height
-        min-height: calc(100vh - 60px); // 100vh - footer height
+    @include media(sm) {
+      padding-top: 60px; // Header height
+      min-height: calc(100vh - 60px); // 100vh - footer height
+    }
+
+    &__content {
+      @include media(lg) {
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    &__inner {
+      padding: 0 $spacing--15;
+
+      @include media(lg) {
+        flex: 1 0 $contentWidth;
+        max-width: $contentWidth;
       }
     }
   }

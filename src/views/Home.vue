@@ -1,43 +1,35 @@
 <template>
   <div class="home">
-    <div :class="b('content')">
-      <div :class="b('content-inner', { slider: true })">
-        <c-slider :slides="slides" />
+    <c-slider :slides="slides" />
+    <!-- Intro -->
+    <h1 :class="b('intro-title')">
+      Fischerverein Romanshorn
+    </h1>
+    <div :class="b('intro')">
+      <div :class="b('intro-left')">
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+          tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+          eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+          takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetet
+          ur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ma
+          gna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+          et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d
+          olor sit amet....
+        </p>
+      </div>
+      <div :class="b('intro-right')">
+        <img src="../assets/seeforelle-01.jpg" alt="Seeforelle">
       </div>
     </div>
-    <div :class="b('content')">
-      <div :class="b('content-inner')">
-        <!-- Intro -->
-        <h1 :class="b('intro-title')">
-          Fischerverein Romanshorn
-        </h1>
-        <div :class="b('intro')">
-          <div :class="b('intro-left')">
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-              eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetet
-              ur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ma
-              gna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-              et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d
-              olor sit amet....
-            </p>
-          </div>
-          <div :class="b('intro-right')">
-            <img src="../assets/seeforelle-01.jpg" alt="Seeforelle">
-          </div>
-        </div>
 
-        <!-- News -->
-        <h1 :class="b('sub-title')">
-          News und Termine
-        </h1>
-        <div>
-          Add News Teaser...
-          <c-news-list :max-items="2" />
-        </div>
-      </div>
+    <!-- News -->
+    <h1 :class="b('sub-title')">
+      News und Termine
+    </h1>
+    <div>
+      Add News Teaser...
+      <c-news-list :max-items="2" />
     </div>
   </div>
 </template>
@@ -75,26 +67,6 @@
 
 <style lang="scss">
   .home {
-    &__content {
-      @include media(lg) {
-        display: flex;
-        justify-content: center;
-      }
-    }
-
-    &__content-inner {
-      padding: 0 $spacing--15;
-
-      @include media(lg) {
-        flex: 1 0 $contentWidth;
-        max-width: $contentWidth;
-      }
-    }
-
-    &__content-inner--slider {
-      padding: 0;
-    }
-
     &__intro {
       font-family: $font-family--secondary;
       margin-top: $spacing--30;
