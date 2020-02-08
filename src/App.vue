@@ -9,9 +9,19 @@
 </template>
 
 <script>
+  import Firebase from 'firebase';
   import cMainHeader from './components/c-main-header';
   import cMainFooter from './components/c-main-footer';
   import lDefault from './components/l-default';
+
+  window.database = Firebase.initializeApp({
+    apiKey: 'AIzaSyCe49EcSSZXPhQpKmz9Ut-5wiqG9HnIpqY',
+    authDomain: 'https://poseidon-b52a9.firebaseio.com/',
+    databaseURL: 'https://poseidon-b52a9.firebaseio.com/',
+    projectId: 'poseidon-b52a9',
+    storageBucket: 'storageBucket',
+    messagingSenderId: 'web'
+  }).database().ref('/contacts');
 
   export default {
     components: {

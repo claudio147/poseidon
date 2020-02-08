@@ -30,7 +30,9 @@ const mailTransport = nodemailer.createTransport({
   }
 });
 
-// Sends an email confirmation when a user changes his mailing list subscription.
+/**
+ * E-mail to web administrator.
+ */
 exports.sendEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
@@ -42,6 +44,36 @@ exports.sendEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrit
     subject: 'Kontaktformular Webseite',
     text: `Name: ${val.name}, E-Mail: ${val.email}, Nachricht: ${val.message}`,
     html: `<h1>Kontaktaufnahme Website</h1><div><b>Name:</b>${val.name}</div><div><b>E-Mail:</b>${val.email}</div><div><b>Nachricht:</b>${val.message}</div>`,
+    auth: {
+      user: senderEmail,
+      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
+      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+    }
+  };
+
+  try {
+    await mailTransport.sendMail(mailOptions);
+  } catch (error) {
+    console.error('There was an error while sending the email:', error);
+  }
+
+  return null;
+});
+
+/**
+ * Confirmation E-mail to user.
+ */
+exports.sendUserEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
+  const snapshot = change.after;
+  const val = snapshot.val();
+
+  const mailOptions = {
+    from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
+    replyTo: 'info@fischereiverein-romanshorn.ch',
+    to: val.email,
+    subject: 'Fischereiverein Romanshorn',
+    text: 'Wir haben Ihre Nachricht erhalten und es wird sich schnellstmöglich jemand bei Ihnen melden.',
+    html: '<h1>Vielen Dank für die Anfrage</h1><div><p>Wir haben Ihre Nachricht erhalten und es wird sich schnellstmöglich jemand bei Ihnen melden.</p></div>',
     auth: {
       user: senderEmail,
       refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',

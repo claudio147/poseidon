@@ -1,47 +1,52 @@
 <template>
-  <form :class="b()" @submit.prevent="onSubmitForm">
-    <label :class="b('label')">
-      <span>Ihr Name</span>
-      <input v-model="form.name"
-             :class="b('input', { text: true })"
-             name="name"
-             type="text">
-    </label>
+  <div :class="b()">
+    <!-- Form -->
+    <form :class="b('form')" @submit.prevent="onSubmitForm">
+      <label :class="b('label')">
+        <span :class="b('label-text')">Ihr Name*</span>
+        <input v-model="form.name"
+               :class="b('input', { text: true })"
+               name="name"
+               type="text">
+      </label>
 
-    <label :class="b('label')">
-      <span>E-Mail</span>
-      <input v-model="form.email"
-             :class="b('input', { text: true })"
-             name="email"
-             type="email">
-    </label>
+      <label :class="b('label')">
+        <span :class="b('label-text')">E-Mail*</span>
+        <input v-model="form.email"
+               :class="b('input', { text: true })"
+               name="email"
+               type="email">
+      </label>
 
-    <label :class="b('label')">
-      <span>Nachricht</span>
-      <textarea v-model="form.message"
-                :class="b('input', { textarea: true })"
-                name="message"></textarea>
-    </label>
+      <label :class="b('label')">
+        <span :class="b('label-text')">Telefon</span>
+        <input v-model="form.phone"
+               :class="b('input', { text: true })"
+               name="phone"
+               type="text">
+      </label>
 
-    <button :class="b('button')"
-            type="submit">
-      Senden
-    </button>
-  </form>
+      <label :class="b('label')">
+        <span :class="b('label-text')">Nachricht*</span>
+        <textarea v-model="form.message"
+                  :class="b('input', { textarea: true })"
+                  name="message"></textarea>
+      </label>
+
+      <button :class="b('button')"
+              type="submit">
+        Senden
+      </button>
+    </form>
+
+    <!-- Notification -->
+    <div v-if="notification" :class="b('notification', { type: notification.type })">
+      <p>{{ notification.message }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
-  import Firebase from 'firebase';
-
-  window.database = Firebase.initializeApp({
-    apiKey: 'AIzaSyCe49EcSSZXPhQpKmz9Ut-5wiqG9HnIpqY',
-    authDomain: 'https://poseidon-b52a9.firebaseio.com/',
-    databaseURL: 'https://poseidon-b52a9.firebaseio.com/',
-    projectId: 'poseidon-b52a9',
-    storageBucket: 'storageBucket',
-    messagingSenderId: 'web'
-  }).database().ref('/contacts');
-
   export default {
     name: 'c-contact-form',
     // components: {},
@@ -50,11 +55,25 @@
     // props: {},
     data() {
       return {
+        /**
+         * @type {Object} Holds the form values.
+         */
         form: {
           name: '',
           email: '',
           message: '',
-        }
+          phone: '',
+        },
+
+        /**
+         * @type {Boolean} Shows if a request is currently running.
+         */
+        requestIsRunning: false,
+
+        /**
+         * @type {Object|null} Holds the optional notification for the user.
+         */
+        notification: null,
       };
     },
 
@@ -73,20 +92,58 @@
     // destroyed() {},
 
     methods: {
+      /**
+       * Submits the form.
+       */
       onSubmitForm() {
+        const { name, email, message } = this.form;
 
+        if (!name || !email || !message) {
+          return;
+        }
 
-        console.log('database', database);
+        this.requestIsRunning = true;
 
-        database.push(this.form);
-        // Get a reference to the database service
-      /*  const url = 'https://poseidon-b52a9.firebaseio.com/';
-        const data = this.form;
-        const config = {};
+        // eslint-disable-next-line no-undef
+        database.push(this.form, (error) => {
+          this.requestIsRunning = false;
+          this.resetForm();
 
-        this.$http.post(url, data, config).then((response) => {
-          console.log(response);
-        });*/
+          if (error) {
+            this.showNotification('error');
+            throw new Error(error);
+          } else {
+            this.showNotification('success');
+          }
+        });
+      },
+
+      /**
+       * Resets the form fields.
+       */
+      resetForm() {
+        this.form.name = '';
+        this.form.email = '';
+        this.form.message = '';
+      },
+
+      /**
+       * Shows a notification to the user.
+       *
+       * @param {String} type - The notification type (error or success).
+       */
+      showNotification(type) {
+        const errorMessage = 'Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es später nochmals.';
+        const successMessage = 'Vielen Dank für die Anfrage. Wir werden uns schnellstmöglich bei Ihnen melden.';
+
+        this.notification = {
+          type,
+          message: type === 'error' ? errorMessage : successMessage,
+        };
+
+        setTimeout(() => {
+          this.notification = null;
+        }, 5000);
       }
     },
     // render() {},
@@ -95,5 +152,75 @@
 
 <style lang="scss">
   .c-contact-form {
+    &__form {
+
+    }
+
+    &__label {
+      display: block;
+    }
+
+    &__label-text {
+      display: block;
+    }
+
+    &__input {
+      width: 100%;
+      border: 1px solid $color-grayscale--400;
+      padding: $spacing--5 $spacing--15;
+      font-size: $font-size--18;
+      color: $color-grayscale--200;
+      border-radius: 3px;
+
+      &:focus {
+        outline: none;
+        border-color: $color-primary--2;
+      }
+    }
+
+    &__input--textarea {
+      min-height: 300px;
+    }
+
+    &__button {
+      background-color: $color-primary--2;
+      border-radius: 3px;
+      border: 1px solid $color-primary--2;
+      color: $color-grayscale--1000;
+      cursor: pointer;
+      width: 100%;
+      min-height: 39px;
+
+      &:hover {
+        color: $color-secondary--1;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__notification {
+      margin-top: 50px;
+      padding: $spacing--20;
+      border: 1px solid $color-primary--1;
+      color: $color-grayscale--200;
+      border-radius: 3px;
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+
+    &__notification--type-success {
+      background-color: $color-success;
+      border-color: $color-success;
+    }
+
+    &__notification--type-error {
+      color: $color-grayscale--1000;
+      background-color: $color-error;
+      border-color: $color-error;
+    }
   }
 </style>
