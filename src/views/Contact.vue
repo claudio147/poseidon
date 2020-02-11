@@ -1,6 +1,8 @@
 <template>
   <div :class="b()">
-    <h1 :class="b('title')">Sie haben Fragen? Nehmen Sie direkt übers Online Formular mit uns Kontakt auf.</h1>
+    <h1 :class="b('title')">
+      Sie haben Fragen? Nehmen Sie direkt übers Online Formular mit uns Kontakt auf.
+    </h1>
     <div :class="b('content')">
       <div :class="b('form-wrapper')">
         <c-contact-form />

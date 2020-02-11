@@ -46,8 +46,9 @@ h6 {
 }
 
 p {
-  @include font($font-size--18);
+  @include font($font-size--22);
 
+  font-family: $font-family--secondary;
   font-weight: 400;
 }
 

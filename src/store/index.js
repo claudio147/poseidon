@@ -12,10 +12,16 @@ const store = new Vuex.Store({
     news: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of download items.
+     */
+    downloads: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
       fetchNews: false,
+      fetchDownloads: false,
     }
   },
 
@@ -33,6 +39,15 @@ const store = new Vuex.Store({
         ? state.news.sort((valueA, valueB) => valueA.date.getTime() - valueB.date.getTime()).reverse()
         : [];
     },
+
+    /**
+     * Gets the list of downloads.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array.<Object>}
+     */
+    downloads: state => state.downloads || [],
 
     /**
      * Gets a specific news entry by the given id.
@@ -75,6 +90,16 @@ const store = new Vuex.Store({
     },
 
     /**
+     * Updates the list of downloads.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array} payload - The list of download entries.
+     */
+    setDownloads(state, payload) {
+      state.downloads = payload;
+    },
+
+    /**
      * Sets the state of a request.
      *
      * @param {Object} state - Current state object.
@@ -101,7 +126,7 @@ const store = new Vuex.Store({
       commit('setRunningRequest', { id: 'fetchnews', isRunning: true });
 
       vm.$storyblok.getAll({
-        slug: 'news',
+        starts_with: 'news',
         version: 'published'
       }, (data) => {
         const { stories } = data || {};
@@ -124,7 +149,37 @@ const store = new Vuex.Store({
       }, () => {
         commit('setRunningRequest', { id: 'fetchnews', isRunning: false });
       });
-    }
+    },
+
+    /**
+     * Fetchs the downloads (documents) from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchDownloads({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchDownloads', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'documents',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          commit('setDownloads', stories.map(story => ({
+            id: story.slug,
+            name: story.content && story.content.fileName,
+            src: story.content && story.content.file,
+          })));
+          commit('setRunningRequest', { id: 'fetchDownloads', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchDownloads', isRunning: false });
+      });
+    },
   }
 });
 

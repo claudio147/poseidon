@@ -30,3 +30,5 @@ new Vue({
   // eslint-disable-next-line id-length
   render: h => h(App),
 }).$mount('#app');
+
+Vue.prototype.$axios = axios;
