@@ -20,6 +20,21 @@
 
   export default {
     name: 'contact',
+    metaInfo: {
+      title: 'Kontakt',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Kontakt aufnehmen mit dem Sportfischerverein Romanshorn.',
+        },
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'Kontakt, Standort, E-mail, Anfahrt, Lage, Romanshorn',
+        }
+      ]
+    },
     components: {
       cContactForm,
     },

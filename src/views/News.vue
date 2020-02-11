@@ -13,6 +13,21 @@
    */
   export default {
     name: 'news',
+    metaInfo: {
+      title: 'News',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Neuigkeiten und News über den Sportfischerverein Romanshorn',
+        },
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'News, Aktuelles, Sportfischerverein, Fischereiverein',
+        }
+      ]
+    },
     components: {
       cNewsList,
     },
