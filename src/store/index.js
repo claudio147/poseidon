@@ -17,11 +17,17 @@ const store = new Vuex.Store({
     downloads: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of images for the gallery.
+     */
+    galleryImages: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
       fetchNews: false,
       fetchDownloads: false,
+      fetchGalleryImages: false,
     }
   },
 
@@ -41,6 +47,15 @@ const store = new Vuex.Store({
     },
 
     /**
+     * Gets a specific news entry by the given id.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Object}
+     */
+    getNewsById: state => entryId => state.news.find(entry => entry.id === entryId),
+
+    /**
      * Gets the list of downloads.
      *
      * @param {Object} state - The vuex store state.
@@ -50,13 +65,13 @@ const store = new Vuex.Store({
     downloads: state => state.downloads || [],
 
     /**
-     * Gets a specific news entry by the given id.
+     * Gets the list of gallery images.
      *
      * @param {Object} state - The vuex store state.
      *
-     * @returns {Object}
+     * @returns {Array.<Object>}
      */
-    getNewsById: state => entryId => state.news.find(entry => entry.id === entryId),
+    galleryImages: state => state.galleryImages || [],
 
     /**
      * Gets an object with all requests and their state.
@@ -97,6 +112,16 @@ const store = new Vuex.Store({
      */
     setDownloads(state, payload) {
       state.downloads = payload;
+    },
+
+    /**
+     * Updates the gallery images.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array} payload - The list of images for the gallery.
+     */
+    setGalleryImages(state, payload) {
+      state.galleryImages = payload;
     },
 
     /**
@@ -152,7 +177,7 @@ const store = new Vuex.Store({
     },
 
     /**
-     * Fetchs the downloads (documents) from the CMS.
+     * Fetches the downloads (documents) from the CMS.
      *
      * @param {Object} context - The vuex context object.
      * @param {Object} context.commit - The current commit object.
@@ -178,6 +203,36 @@ const store = new Vuex.Store({
         }
       }, () => {
         commit('setRunningRequest', { id: 'fetchDownloads', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the images (gallery) from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchGallery({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'gallery',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          const images = [];
+
+          stories.forEach(story => images.push(...story.content.images));
+
+          commit('setGalleryImages', images);
+          commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: false });
       });
     },
   }

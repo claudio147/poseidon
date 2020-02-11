@@ -1,6 +1,10 @@
 <template>
   <div :class="b()">
     <h1>Gallery</h1>
+    <img v-for="(img, index) in images"
+         :key="`${index}-${img.filename}`"
+         :src="img.filename"
+         :alt="img.name">
   </div>
 </template>
 
@@ -15,11 +19,24 @@
     //   return {};
     // },
 
-    // computed: {},
+    computed: {
+      /**
+       * Gets the list of images.
+       *
+       * @returns {Array.<Object>}
+       */
+      images() {
+        return this.$store.getters.galleryImages || [];
+      }
+    },
     // watch: {},
 
     // beforeCreate() {},
-    // created() {},
+    created() {
+      if (!this.images.length) {
+        this.$store.dispatch('fetchGallery', { vm: this });
+      }
+    },
     // beforeMount() {},
     // mounted() {},
     // beforeUpdate() {},
