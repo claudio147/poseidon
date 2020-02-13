@@ -224,11 +224,12 @@ const store = new Vuex.Store({
         const { stories } = data || {};
 
         if (Array.isArray(stories)) {
-          const images = [];
-
-          stories.forEach(story => images.push(...story.content.images));
-
-          commit('setGalleryImages', images);
+          commit('setGalleryImages', stories.map(story => ({
+              id: story.uuid,
+              title: story.content.title,
+              text: story.content.description,
+              images: story.content.images.map(image => ({ url: image.filename, alt: image.name }))
+            })));
           commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: false });
         }
       }, () => {
