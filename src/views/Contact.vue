@@ -1,8 +1,11 @@
 <template>
   <div :class="b()">
     <h1 :class="b('title')">
-      Sie haben Fragen? Nehmen Sie direkt übers Online Formular mit uns Kontakt auf.
+      Sie haben Fragen?
     </h1>
+    <h2 :class="b('subtitle')">
+      Nehmen Sie direkt übers Online Formular mit uns Kontakt auf.
+    </h2>
     <div :class="b('content')">
       <div :class="b('form-wrapper')">
         <c-contact-form />
@@ -74,8 +77,15 @@
     }
 
     &__title {
-      font-family: $font-family--primary;
-      font-size: $font-size--32;
+      @extend %heading-h1;
+
+      text-align: center;
+    }
+
+    &__subtitle {
+      @extend %heading-h2;
+
+      text-align: center;
       margin-bottom: $spacing--50;
     }
 

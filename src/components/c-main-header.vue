@@ -289,15 +289,14 @@
 
     position: fixed;
     width: 100vw;
-    background: rgb(37,57,68);
-    background: linear-gradient(0deg, rgba(37,57,68,1) 0%, rgba(0,0,0,1) 88%);
+    background-color: $color-primary--1;
     display: flex;
     justify-content: center;
-    min-height: 75px;
     z-index: 100;
 
     @include media(sm) {
       min-height: 60px;
+      border-top: $spacing--30 solid $color-grayscale--1000;
     }
 
     &__inner {
@@ -305,8 +304,10 @@
       display: flex;
       width: 100vw;
       justify-content: space-between;
+      min-height: 75px;
 
       @include media(sm) {
+        min-height: 60px;
         justify-content: initial;
       }
 
@@ -384,11 +385,16 @@
       width: 100%;
       text-align: center;
       padding: $spacing--15 0;
+      font-weight: $font-weight--bold;
 
       &:hover,
       &:focus {
         color: $color-secondary--1;
       }
+    }
+
+    &__link--sub-level {
+      font-weight: $font-weight--regular;
     }
 
     &__list-item:hover &__sub-level-list {
@@ -450,7 +456,7 @@
 
       @include media(sm) {
         position: absolute;
-        bottom: -$spacing--20;
+        top: -$spacing--25;
       }
     }
 
@@ -460,10 +466,14 @@
       position: absolute;
       transform: scaleY(0);
       transform-origin: top;
-      background-color: $color-grayscale--0;
+      background-color: $color-primary--1;
       top: 60px;
       min-width: 160px;
       transition: all 200ms ease-out;
+
+      @include media(sm) {
+        border-top: 1px solid $color-secondary--1;
+      }
 
       @include media(md) {
         min-width: 200px;

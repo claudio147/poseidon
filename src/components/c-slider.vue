@@ -65,7 +65,7 @@
 
 <style lang="scss">
   .c-slider {
-    max-width: 1600px;
+    max-width: 2400px;
     width: 100vw;
     position: relative;
     left: 50%;
@@ -73,12 +73,14 @@
     margin-left: -50vw;
     margin-right: -50vw;
 
-    @include media(xl) {
-      margin-left: 0;
+    @include media(xxl) {
+      margin-left: -1200px;
+      margin-right: -1200px;
+     /* margin-left: 0;
       margin-right: 0;
       left: 0;
       right: 0;
-      width: 100%;
+      width: 100%;*/
     }
 
     img {

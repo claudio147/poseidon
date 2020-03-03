@@ -48,17 +48,21 @@
       return {
         slides: [
           {
-            src: 'https://www.fillmurray.com/g/1920/500',
+            src: 'https://a.storyblok.com/f/73482/2400x800/20da0b2e38/slider_02.jpg',
             alt: 'dummy image',
           },
           {
-            src: 'https://www.fillmurray.com/g/1920/500',
+            src: 'https://a.storyblok.com/f/73482/2400x800/f94becd08f/slider_01.jpg',
             alt: 'dummy image',
           },
           {
-            src: 'https://www.fillmurray.com/g/1920/500',
+            src: 'https://a.storyblok.com/f/73482/2400x800/65499c7327/slider_03.jpg',
             alt: 'dummy image',
-          }
+          },
+          {
+            src: 'https://a.storyblok.com/f/73482/2400x800/0735ba50cd/slider_04.jpg',
+            alt: 'dummy image',
+          },
         ],
       };
     },
@@ -100,8 +104,9 @@
     }
 
     &__intro-title {
-      font-family: $font-family--primary;
-      font-size: $font-size--32;
+      @extend %heading-h1;
+
+      text-align: center;
       margin-top: $spacing--50;
     }
 

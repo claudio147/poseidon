@@ -193,14 +193,13 @@
     }
 
     &--h1 {
-      @include font($font-size--32);
+      @extend %heading-h1;
 
-      font-weight: $font-weight--bold;
       margin-bottom: $spacing--25;
     }
 
     &--h2 {
-      @include font($font-size--16);
+      @extend %heading-h2;
     }
 
     &--h3 {

@@ -1,0 +1,12 @@
+%heading-h1 {
+  @include font($font-size--40, null, $font-weight--bold);
+
+  color: $color-primary--1;
+  text-transform: uppercase;
+}
+
+%heading-h2 {
+  @include font($font-size--30, null, $font-weight--regular);
+
+  color: $color-primary--1;
+}

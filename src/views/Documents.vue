@@ -1,11 +1,11 @@
 <template>
   <div :class="b()">
-    <e-heading tag-name="h1">
+    <h1 :class="b('title')">
       Dokumente
-    </e-heading>
-    <p :class="b('intro-text')">
+    </h1>
+    <h2 :class="b('subtitle')">
       Hier finden Sie alle wichtigen Vereinsdokumente und allgemeine Informationen zum Download.
-    </p>
+    </h2>
     <c-document-list v-if="documents.length" :documents="documents" />
   </div>
 </template>
@@ -83,8 +83,21 @@
   .documents {
     padding-top: $spacing--50;
 
-    &__intro-text {
+    &__title {
+      @extend %heading-h1;
+
+      text-align: center;
+    }
+
+    &__subtitle {
+      @extend %heading-h2;
+
+      text-align: center;
       margin-bottom: $spacing--50;
+
+      @include media(sm) {
+        margin-bottom: $spacing--100;
+      }
     }
   }
 </style>

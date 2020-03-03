@@ -158,23 +158,24 @@
 
     &__label {
       display: block;
+      margin-bottom: $spacing--20;
     }
 
     &__label-text {
       display: block;
+      color: $color-primary--1;
     }
 
     &__input {
       width: 100%;
-      border: 1px solid $color-grayscale--400;
-      padding: $spacing--5 $spacing--15;
+      border: 1px solid $color-secondary--2;
+      padding: $spacing--10 $spacing--15;
       font-size: $font-size--18;
       color: $color-grayscale--200;
-      border-radius: 3px;
 
       &:focus {
         outline: none;
-        border-color: $color-primary--2;
+        border-color: $color-secondary--2;
       }
     }
 
@@ -183,16 +184,17 @@
     }
 
     &__button {
-      background-color: $color-primary--2;
-      border-radius: 3px;
-      border: 1px solid $color-primary--2;
+      @include font($font-size--22, null, $font-weight--bold);
+
+      background-color: $color-secondary--2;
       color: $color-grayscale--1000;
       cursor: pointer;
       width: 100%;
-      min-height: 39px;
+      border: 0;
+      min-height: 50px;
 
       &:hover {
-        color: $color-secondary--1;
+        background-color: $color-primary--1;
       }
 
       &:focus {

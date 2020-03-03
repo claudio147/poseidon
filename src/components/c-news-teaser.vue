@@ -101,7 +101,7 @@
   .c-news-teaser {
     display: block;
     color: $color-grayscale--1000;
-    background-color: $color-grayscale--0;
+    background-color: $color-secondary--2;
 
     &:hover,
     &:visited,

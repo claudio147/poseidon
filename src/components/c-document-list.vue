@@ -82,13 +82,13 @@
     }
 
     &__link:hover {
-      color: $color-primary--2;
+      color: $color-primary--1;
 
       svg,
       path,
       polyline,
       line {
-        stroke: $color-primary--2;
+        stroke: $color-primary--1;
       }
     }
 

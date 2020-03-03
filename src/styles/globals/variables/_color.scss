@@ -15,17 +15,17 @@ $color-gradient--1-0: $color-grayscale--0;
 $color-gradient--1-1: $color-grayscale--1000;
 
 // CSS Variables
-$color-primary--1: #000000;
-$color-primary--1--rgb: rgb(0,0,0);
-$color-primary--2: #4399C7;
-$color-primary--2--rgb: rgb(67, 153, 199);
+$color-primary--1: #0C5F79;
+//$color-primary--1--rgb: rgb(0,0,0);
+//$color-primary--2: #C6B189;
+//$color-primary--2--rgb: rgb(67, 153, 199);
 $color-success: #40EE8C;
 $color-error: #EE5D57;
 
 
-$color-secondary--1: #ffe709;
-$color-secondary--1--rgb: rgb(245, 238, 0);
-$color-secondary--2: var(--theme-color-secondary-2);
+$color-secondary--1: #FFEF00;
+//$color-secondary--1--rgb: rgb(245, 238, 0);
+$color-secondary--2: #C6B189;
 $color-secondary--2--rgb: var(--theme-color-secondary-2--rgb);
 $color-secondary--3: var(--theme-color-secondary-3);
 $color-secondary--3--rgb: var(--theme-color-secondary-3--rgb);

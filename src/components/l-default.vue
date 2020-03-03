@@ -44,7 +44,7 @@
     min-height: calc(100vh - 60px); // 100vh - footer height
 
     @include media(sm) {
-      padding-top: 60px; // Header height
+      padding-top: 90px; // Header height
       min-height: calc(100vh - 60px); // 100vh - footer height
     }
 
