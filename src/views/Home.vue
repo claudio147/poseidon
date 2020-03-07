@@ -23,6 +23,20 @@
       </div>
     </div>
 
+    <div :class="b('cta-wrapper')">
+      <div :class="b('cta-inner')">
+        <span>
+          Jetzt Mitglied werden!
+        </span>
+        <router-link to="/registration" :class="b('cta-button')">
+          zur Anmeldung
+          <e-icon icon="i-contact"
+                  width="30"
+                  height="30" />
+        </router-link>
+      </div>
+    </div>
+
     <!-- News -->
     <h2 :class="b('sub-title')">
       News und Termine
@@ -34,12 +48,14 @@
 </template>
 
 <script>
+  import eIcon from '../components/e-icon';
   import cSlider from '../components/c-slider';
   import cNewsList from '../components/c-news-list';
 
   export default {
     name: 'home',
     components: {
+      eIcon,
       cSlider,
       cNewsList,
     },
@@ -114,6 +130,42 @@
 
       text-align: center;
       margin-bottom: $spacing--50;
+    }
+
+    &__cta-wrapper {
+      @extend %heading-h2;
+
+      padding: $spacing--30 0;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background-color: $color-primary--1;
+      color: $color-grayscale--1000;
+      margin-bottom: $spacing--80;
+    }
+
+    &__cta-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: $contentWidth;
+      margin: 0 auto;
+      padding: 0 $spacing--15;
+    }
+
+    &__cta-button,
+    &__cta-button:hover {
+      color: $color-grayscale--1000;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid $color-grayscale--1000;
+
+      .e-icon {
+        margin-left: $spacing--10;
+      }
     }
   }
 </style>

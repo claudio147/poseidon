@@ -129,6 +129,10 @@
     &__content {
       max-width: 1000px;
       margin: 0 auto;
+
+      img {
+        max-width: 100%;
+      }
     }
   }
 </style>

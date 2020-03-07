@@ -2,7 +2,9 @@
   <div id="app">
     <c-main-header />
     <l-default>
-      <router-view />
+      <transition name="slide-fade">
+        <router-view />
+      </transition>
     </l-default>
     <c-main-footer />
   </div>
@@ -49,5 +51,16 @@
 </script>
 
 <style lang="scss">
-
+  /* Enter and leave animations can use different */
+  /* durations and timing functions.              */
+  .slide-fade-enter-active {
+    transition: all .2s ease-in-out;
+  }
+  .slide-fade-leave-active {
+    transition: all .2s ease-in-out;
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 </style>
