@@ -58,7 +58,7 @@
     &__inner {
       padding: 0 $spacing--15;
 
-      @include media(lg) {
+      @include media($contentWidth) {
         flex: 1 0 $contentWidth;
         max-width: $contentWidth;
       }

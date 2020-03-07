@@ -4,7 +4,7 @@
       <swiper-slide v-for="(slide, index) in slides" :key="index">
         <img :src="slide.src" :alt="slide.alt">
       </swiper-slide>
-      <div slot="pagination" class="swiper-pagination"></div>
+      <div v-if="slides.length > 1" slot="pagination" class="swiper-pagination"></div>
     </swiper>
   </div>
 </template>
