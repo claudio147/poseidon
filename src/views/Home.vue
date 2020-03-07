@@ -19,17 +19,16 @@
         </p>
       </div>
       <div :class="b('intro-right')">
-        <img src="../assets/seeforelle-01.jpg" alt="Seeforelle">
+        <img src="../assets/photo-of-person-holding-fishing-rod-2473502.jpg" alt="Seeforelle">
       </div>
     </div>
 
     <!-- News -->
-    <h1 :class="b('sub-title')">
+    <h2 :class="b('sub-title')">
       News und Termine
-    </h1>
+    </h2>
     <div>
-      Add News Teaser...
-      <c-news-list :max-items="2" />
+      <c-news-list :max-items="3" />
     </div>
   </div>
 </template>
@@ -73,9 +72,9 @@
   .home {
     &__intro {
       font-family: $font-family--secondary;
-      margin-top: $spacing--30;
+      margin-top: $spacing--50;
       font-size: $font-size--24;
-      margin-bottom: $spacing--50;
+      margin-bottom: $spacing--100;
 
       @include media(sm) {
         display: flex;
@@ -107,11 +106,14 @@
       @extend %heading-h1;
 
       text-align: center;
-      margin-top: $spacing--50;
+      margin-top: $spacing--80;
     }
 
     &__sub-title {
-      font-size: $font-size--24;
+      @extend %heading-h1;
+
+      text-align: center;
+      margin-bottom: $spacing--50;
     }
   }
 </style>

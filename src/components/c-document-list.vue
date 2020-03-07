@@ -6,10 +6,13 @@
          title="Datei herunterladen"
          target="_blank">
         {{ document.name }}
-        <e-icon icon="i-download"
-                width="20"
-                height="20"
-                inline />
+        <span :class="b('file-type')">
+          {{ getFileType(document.src) }}
+          <e-icon icon="i-download"
+                  width="20"
+                  height="20"
+                  inline />
+        </span>
       </a>
     </li>
   </ul>
@@ -55,7 +58,13 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      getFileType(src) {
+        const splittedSrc = src.split('.');
+
+        return splittedSrc[splittedSrc.length - 1].toUpperCase();
+      }
+    },
     // render() {},
   };
 </script>
@@ -94,6 +103,16 @@
 
     &__icon {
       width: 20px;
+    }
+
+    &__file-type {
+      display: flex;
+      align-items: center;
+      font-size: $font-size--14;
+
+      .e-icon {
+        margin-left: $spacing--15;
+      }
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div :class="b()">
-    Footer
+    Copyright {{ currentYear }} - Fischereiverein Romanshorn
   </div>
 </template>
 
@@ -15,7 +15,11 @@
     //   return {};
     // },
 
-    // computed: {},
+    computed: {
+      currentYear() {
+        return new Date().getFullYear();
+      }
+    },
     // watch: {},
 
     // beforeCreate() {},
@@ -37,6 +41,8 @@
 <style lang="scss">
   .c-main-footer {
     background-color: $color-primary--1;
-    min-height: 60px;
+    color: $color-grayscale--1000;
+    text-align: center;
+    padding: $spacing--15;
   }
 </style>

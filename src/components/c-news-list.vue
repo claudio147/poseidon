@@ -77,6 +77,10 @@
       margin: (-$spacing--40) (-$spacing--30);
     }
 
+    @include media(sm) {
+      margin: (-$spacing--40) (-$spacing--15);
+    }
+
     &__item {
       margin-bottom: $spacing--40;
 
@@ -84,6 +88,12 @@
         flex: 1 0 50%;
         max-width: 50%;
         padding: $spacing--40 $spacing--30;
+      }
+
+      @include media(lg) {
+        flex-basis: percentage(1/3);
+        max-width: percentage(1/3);
+        padding: $spacing--40 $spacing--15;
       }
 
       .c-news-teaser {

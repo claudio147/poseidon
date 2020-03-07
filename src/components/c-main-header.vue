@@ -340,13 +340,13 @@
 
     &__navigation--left {
       #{$this}__list {
-        justify-content: flex-end;
+        /*justify-content: flex-end;*/
       }
     }
 
     &__navigation--right {
       #{$this}__list {
-        justify-content: flex-start;
+        /*justify-content: flex-start;*/
       }
 
       #{$this}__list-item {
@@ -360,6 +360,7 @@
       display: flex;
       padding: 0 $spacing--25;
       height: 100%;
+      justify-content: space-around;
     }
 
     &__list-item {
@@ -385,6 +386,7 @@
       width: 100%;
       text-align: center;
       padding: $spacing--15 0;
+      font-size: $font-size--18;
       font-weight: $font-weight--bold;
 
       &:hover,
@@ -395,6 +397,7 @@
 
     &__link--sub-level {
       font-weight: $font-weight--regular;
+      font-size: $font-size--16;
     }
 
     &__list-item:hover &__sub-level-list {

@@ -17,11 +17,11 @@ module.exports = {
     }
   },
 
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('images')
       .use('url-loader')
       .loader('url-loader')
-      .tap(options => Object.assign(options, { limit: 10240 }))
+      .tap(options => Object.assign(options, { limit: 10240, esModule: false, }));
   }
 };

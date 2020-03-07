@@ -3,12 +3,15 @@
     <h1 :class="b('title')">
       Impressionen
     </h1>
+    <h2 :class="b('sub-title')">
+      Entdecken Sie hier einige Impressionen zum Vereinsleben und zu aktuellen Vereins Anlässen.
+    </h2>
     <div v-for="gallery in galleries"
          :key="gallery.id"
          :class="b('block')">
-      <h2 v-if="gallery.title" :class="b('sub-title')">
+      <h3 v-if="gallery.title" :class="b('gallery-title')">
         {{ gallery.title }}
-      </h2>
+      </h3>
       <p :class="b('description')">
         {{ gallery.text }}
       </p>
@@ -73,20 +76,28 @@
     }
 
     &__title {
-      font-family: $font-family--primary;
-      font-size: $font-size--32;
-      margin-bottom: $spacing--50;
+      @extend %heading-h1;
+
+      text-align: center;
     }
 
     &__sub-title {
-      @include font($font-size--22);
+      @extend %heading-h2;
+
+      text-align: center;
+      margin-bottom: $spacing--50;
+    }
+
+    &__gallery-title {
+      @extend %heading-h2;
 
       font-weight: $font-weight--bold;
     }
 
     &__description {
-      @include font($font-size--16);
+      @include font($font-size--20);
 
+      color: $color-primary--1;
       font-weight: $font-weight--regular;
     }
   }

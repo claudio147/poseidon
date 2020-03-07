@@ -12,7 +12,6 @@
 
 <script>
   import cDocumentList from '../components/c-document-list';
-  import eHeading from '../components/e-heading';
 
   /**
    * View for the document downloads.
@@ -38,7 +37,6 @@
     },
     components: {
       cDocumentList,
-      eHeading,
     },
     // mixins: [],
 
@@ -98,6 +96,11 @@
       @include media(sm) {
         margin-bottom: $spacing--100;
       }
+    }
+
+    .c-document-list {
+      max-width: 1000px;
+      margin: 0 auto;
     }
   }
 </style>

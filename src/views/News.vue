@@ -1,6 +1,11 @@
 <template>
   <div :class="b()">
-    <h1>News</h1>
+    <h1 :class="b('title')">
+      News
+    </h1>
+    <h2 :class="b('subtitle')">
+      Erfahren Sie hier aktuelles rund um den Verein
+    </h2>
     <c-news-list />
   </div>
 </template>
@@ -59,5 +64,20 @@
 
 <style lang="scss">
   .news {
+    padding-top: $spacing--80;
+
+    &__title {
+      @extend %heading-h1;
+
+      margin-bottom: $spacing--20;
+      text-align: center;
+    }
+
+    &__subtitle {
+      @extend %heading-h2;
+
+      margin-bottom: $spacing--80;
+      text-align: center;
+    }
   }
 </style>

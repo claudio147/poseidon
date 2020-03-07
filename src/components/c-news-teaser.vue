@@ -19,6 +19,9 @@
         {{ news.teaserText }}
       </p>
     </div>
+    <div :class="b('footer')">
+      <span>mehr dazu</span>
+    </div>
   </router-link>
 </template>
 
@@ -99,7 +102,8 @@
 
 <style lang="scss">
   .c-news-teaser {
-    display: block;
+    display: flex;
+    flex-direction: column;
     color: $color-grayscale--1000;
     background-color: $color-secondary--2;
 
@@ -114,13 +118,14 @@
     }
 
     &__content {
-      padding: $spacing--10 $spacing--10 $spacing--20;
+      flex: 1;
+      padding: $spacing--15 $spacing--15 0;
     }
 
     &__date {
       @include font($font-size--14);
 
-      color: $color-grayscale--500;
+      color: $color-grayscale--1000;
       margin-bottom: $spacing--20;
     }
 
@@ -130,6 +135,16 @@
 
     &__text {
       font-family: $font-family--secondary;
+    }
+
+    &__footer {
+      padding-bottom: $spacing--15;
+      align-self: flex-end;
+
+      span {
+        padding-right: $spacing--15;
+        border-bottom: 1px solid $color-grayscale--1000;
+      }
     }
   }
 </style>
