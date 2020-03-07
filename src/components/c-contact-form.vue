@@ -105,7 +105,7 @@
         this.requestIsRunning = true;
 
         // eslint-disable-next-line no-undef
-        database.push(this.form, (error) => {
+        database.ref('/contacts').push(this.form, (error) => {
           this.requestIsRunning = false;
           this.resetForm();
 

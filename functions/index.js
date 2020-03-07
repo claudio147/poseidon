@@ -89,3 +89,63 @@ exports.sendUserEmailConfirmation = functions.database.ref('/contacts/{uid}').on
 
   return null;
 });
+
+/**
+ * Confirmation E-mail to user.
+ */
+exports.sendRegistrationToAdmin = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+  const snapshot = change.after;
+  const val = snapshot.val();
+
+  const mailOptions = {
+    from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
+    replyTo: val.email,
+    to: 'info@fischereiverein-romanshorn.ch',
+    subject: 'Neue Registration Fischereiverein Romanshorn',
+    text: `Vorname: ${val.firstName}, Nachname: ${val.lastName}, Strasse: ${val.street} ${val.streetNumber}, PLZ/Ort: ${val.zip} ${val.city}, Telefon: ${val.phone}, E-Mail: ${val.email}, Geburtsdatum: ${val.birthDate}, Mitgliedschaft: ${val.memberType}, Nachricht: ${val.message}`,
+    html: `<h1>Neue Anmeldung</h1><div><b>Vor-/ Nachname:</b>${val.firstName} ${val.lastName}</div><div><b>Strasse:</b>${val.street} ${val.streetNumber}</div><div><b>PLZ/Ort:</b>${val.zip} / ${val.city}</div><div><b>Geburtsdatum:</b>${val.birthDate}</div><div><b>Telefon:</b>${val.phone} </div><div><b>Mitgliedschaft:</b>${val.memberType}</div><div><b>E-Mail:</b>${val.email}</div><div><b>Bemerkungen:</b>${val.message}</div>`,
+    auth: {
+      user: senderEmail,
+      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
+      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+    }
+  };
+
+  try {
+    await mailTransport.sendMail(mailOptions);
+  } catch (error) {
+    console.error('There was an error while sending the email:', error);
+  }
+
+  return null;
+});
+
+/**
+ * Registration confirmation E-mail to user.
+ */
+exports.sendUserEmailConfirmation = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+  const snapshot = change.after;
+  const val = snapshot.val();
+
+  const mailOptions = {
+    from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
+    replyTo: 'info@fischereiverein-romanshorn.ch',
+    to: val.email,
+    subject: 'Fischereiverein Romanshorn',
+    text: 'Wir haben Ihre Anmeldung erhalten und werden uns bei Ihnen melden sobald diese geprüft wurde.',
+    html: '<h1>Vielen Dank für die Anmeldung</h1><div><p>Wir haben Ihre Anmeldung erhalten und werden uns bei Ihnen melden sobald diese geprüft wurde.</p></div>',
+    auth: {
+      user: senderEmail,
+      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
+      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+    }
+  };
+
+  try {
+    await mailTransport.sendMail(mailOptions);
+  } catch (error) {
+    console.error('There was an error while sending the email:', error);
+  }
+
+  return null;
+});

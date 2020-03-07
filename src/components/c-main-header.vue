@@ -515,8 +515,7 @@
       border-top: 1px solid $color-grayscale--200;
       // background-color: $color-grayscale--0;
       overflow-y: auto;
-      background: rgb(37,57,68);
-      background: linear-gradient(0deg, rgba(37,57,68,1) 0%, rgba(0,0,0,1) 88%);
+      background-color: $color-grayscale--0;
     }
 
     &__mobile-list {

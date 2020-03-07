@@ -21,7 +21,7 @@
     projectId: 'poseidon-b52a9',
     storageBucket: 'storageBucket',
     messagingSenderId: 'web'
-  }).database().ref('/contacts');
+  }).database();
 
   export default {
     components: {
