@@ -2,7 +2,7 @@
   <div :class="b()">
     <!-- Events -->
     <h1 :class="b('title')">
-      Events
+      Veranstaltungen
     </h1>
     <h2 :class="b('subtitle')">
       Hier erfahren Sie wann unsere nächsten Vereins- Events stattfinden.

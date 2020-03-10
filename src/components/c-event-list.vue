@@ -21,6 +21,11 @@
             <p :class="b('text')">
               {{ event.text }}
             </p>
+            <button :class="b('download-button')"
+                    title="Termin in Kalender speichern"
+                    @click="download(event)">
+              <e-icon icon="i-calendar" width="30" height="30" />
+            </button>
           </div>
         </li>
       </ul>
@@ -55,13 +60,16 @@
 </template>
 
 <script>
+  import eIcon from './e-icon';
 
   /**
    * Component renders the list of events (past and next events).
    */
   export default {
     name: 'c-event-list',
-    // components: {},
+    components: {
+      eIcon
+    },
     // mixins: [],
 
     props: {
@@ -154,7 +162,19 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      /**
+       * Downloads the given event as a .ics file for the local calendar.
+       *
+       * @param {Object} event - The event (storyblok) object.
+       */
+      download(event) {
+        const { date, title, text } = event;
+
+        this.$ics.addEvent('ch-de', title, text, '', date, date);
+        this.$ics.download(title);
+      }
+    },
     // render() {},
   };
 </script>
@@ -215,6 +235,7 @@
     }
 
     &__content {
+      position: relative;
       flex: 1 0 auto;
       max-width: calc(100% - 80px);
       background-color: $color-secondary--2;
@@ -251,6 +272,14 @@
 
     &__text {
       @include font($font-size--18, null, $font-weight--regular);
+    }
+
+    &__download-button {
+      position: absolute;
+      top: $spacing--10;
+      right: $spacing--10;
+
+      @extend %button-reset;
     }
   }
 </style>

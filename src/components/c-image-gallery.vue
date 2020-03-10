@@ -70,7 +70,7 @@
     }
 
     &__image-container {
-      border: 5px solid #f1f1f1;
+      border: 5px solid $color-grayscale--1000;
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;

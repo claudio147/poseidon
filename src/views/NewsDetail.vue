@@ -1,12 +1,19 @@
 <template>
   <div :class="b()">
-    <router-link :class="b('back-link')" to="/news" title="zurück zur Übersicht">
-      zur Übersicht
-    </router-link>
+    <div :class="b('action-bar')">
+      <router-link :class="b('back-link')" to="/news" title="zurück zur Übersicht">
+        zur Übersicht
+      </router-link>
+      <vue-goodshare-facebook
+        :page_url="url"
+        title_social="Teilen"
+        has_icon
+      />
+    </div>
     <h2 :class="b('date')">
       {{ dateFormatted }}
     </h2>
-    <h1 :class="b('title')">
+    <h1 v-if="newsEntry" :class="b('title')">
       {{ newsEntry.title }}
     </h1>
     <div v-html="parsedText" :class="b('content')"></div>
@@ -15,6 +22,7 @@
 
 <script>
   import marked from 'marked/marked.min.js';
+  import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook.vue';
   import news from '../mixins/news';
 
   /**
@@ -22,7 +30,9 @@
    */
   export default {
     name: 'news-detail',
-    // components: {},
+    components: {
+      VueGoodshareFacebook,
+    },
     mixins: [
       news,
     ],
@@ -57,6 +67,9 @@
     },
 
     computed: {
+      url() {
+        return window ? window.location.href : '';
+      },
       parsedText() {
         const { text } = this.newsEntry || {};
 
@@ -102,6 +115,13 @@
   .news-detail {
     padding-top: $spacing--80;
 
+    &__action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: $spacing--10;
+    }
+
     &__title {
       @extend %heading-h1;
 
@@ -133,6 +153,11 @@
       img {
         max-width: 100%;
       }
+    }
+
+    .button-social {
+      background-color: $color-primary--1;
+      color: $color-grayscale--1000 !important;
     }
   }
 </style>

@@ -6,10 +6,13 @@ import Vuex from 'vuex';
 import StoryblokVue from 'storyblok-vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import ICS from 'vue-ics';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import dayjs from './plugins/dayjs';
+
+Vue.use(ICS, {});
 
 Vue.config.productionTip = false;
 Vue.use(vueBemCn);
