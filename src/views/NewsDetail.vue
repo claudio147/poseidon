@@ -51,7 +51,7 @@
             vmid: 'keywords',
             name: 'keywords',
             content: this.newsEntry && this.newsEntry.keywords,
-          }
+          },
         ]
       };
     },
