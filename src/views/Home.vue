@@ -23,6 +23,15 @@
       </div>
     </div>
 
+    <!-- Termine -->
+    <h2 :class="b('sub-title')">
+      Unsere nächsten Termine
+    </h2>
+    <div :class="b('event-list-block')">
+      <c-event-list :max-items="2" :show-past-events="false" :show-title="false" />
+    </div>
+
+    <!-- Call to Action / Disturber -->
     <div :class="b('cta-wrapper')">
       <div :class="b('cta-inner')">
         <span>
@@ -39,7 +48,7 @@
 
     <!-- News -->
     <h2 :class="b('sub-title')">
-      News und Termine
+      News und Aktuelles
     </h2>
     <div>
       <c-news-list :max-items="3" />
@@ -51,10 +60,12 @@
   import eIcon from '../components/e-icon';
   import cSlider from '../components/c-slider';
   import cNewsList from '../components/c-news-list';
+  import CEventList from '../components/c-event-list';
 
   export default {
     name: 'home',
     components: {
+      CEventList,
       eIcon,
       cSlider,
       cNewsList,
@@ -166,6 +177,10 @@
       .e-icon {
         margin-left: $spacing--10;
       }
+    }
+
+    &__event-list-block {
+      margin-bottom: $spacing--80;
     }
   }
 </style>

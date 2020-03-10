@@ -8,5 +8,6 @@
 %heading-h2 {
   @include font($font-size--30, null, $font-weight--regular);
 
+  font-family: $font-family--secondary;
   color: $color-primary--1;
 }

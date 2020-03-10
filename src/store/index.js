@@ -22,12 +22,18 @@ const store = new Vuex.Store({
     galleryImages: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of events.
+     */
+    events: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
       fetchNews: false,
       fetchDownloads: false,
       fetchGalleryImages: false,
+      fetchEvents: false,
     }
   },
 
@@ -72,6 +78,19 @@ const store = new Vuex.Store({
      * @returns {Array.<Object>}
      */
     galleryImages: state => state.galleryImages || [],
+
+    /**
+     * Gets the list of events.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array.<Object>}
+     */
+    events(state) {
+      return Array.isArray(state.events)
+        ? state.events.sort((valueA, valueB) => valueA.date.getTime() - valueB.date.getTime())
+        : [];
+    },
 
     /**
      * Gets an object with all requests and their state.
@@ -122,6 +141,16 @@ const store = new Vuex.Store({
      */
     setGalleryImages(state, payload) {
       state.galleryImages = payload;
+    },
+
+    /**
+     * Updates the events in the state.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array.<Object>} payload - The list of events.
+     */
+    setEvents(state, payload) {
+      state.events = payload;
     },
 
     /**
@@ -234,6 +263,38 @@ const store = new Vuex.Store({
         }
       }, () => {
         commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the event from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchEvents({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchEvents', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'events',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          commit('setEvents', stories.map(story => ({
+            id: story.uuid,
+            title: story.content.title,
+            text: story.content.text,
+            image: story.content.image,
+            date: new Date(story.content.date.split('-').join('/')),
+          })));
+          commit('setRunningRequest', { id: 'fetchEvents', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchEvents', isRunning: false });
       });
     },
   }

@@ -151,8 +151,13 @@
               },
               {
                 link: '/news',
-                title: 'News und Termine',
-                name: 'News und Termine',
+                title: 'News und Aktuelles',
+                name: 'News und Aktuelles',
+              },
+              {
+                link: '/events',
+                title: 'Termine',
+                name: 'Termine',
               },
               {
                 link: '/documents',

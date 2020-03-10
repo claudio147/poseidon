@@ -1,26 +1,26 @@
 <template>
   <div :class="b()">
-    <!-- News -->
+    <!-- Events -->
     <h1 :class="b('title')">
-      News
+      Events
     </h1>
     <h2 :class="b('subtitle')">
-      Erfahren Sie hier aktuelles rund um den Verein
+      Hier erfahren Sie wann unsere nächsten Vereins- Events stattfinden.
     </h2>
-    <c-news-list />
+    <c-event-list />
   </div>
 </template>
 
 <script>
-  import cNewsList from '../components/c-news-list';
+  import cEventList from '../components/c-event-list';
 
   /**
    * Renders the news overview page.
    */
   export default {
-    name: 'news',
+    name: 'events',
     metaInfo: {
-      title: 'News',
+      title: 'Events',
       meta: [
         {
           vmid: 'description',
@@ -35,7 +35,7 @@
       ]
     },
     components: {
-      cNewsList,
+      cEventList,
     },
     // mixins: [],
 
@@ -64,8 +64,9 @@
 </script>
 
 <style lang="scss">
-  .news {
+  .events {
     padding-top: $spacing--80;
+    padding-bottom: $spacing--80;
 
     &__title {
       @extend %heading-h1;
