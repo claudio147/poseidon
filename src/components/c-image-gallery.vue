@@ -8,17 +8,25 @@
            @click="galleryIndex = index">
       </div>
     </div>
-    <vue-gallery-slideshow :images="images" :index="galleryIndex" @close="galleryIndex = null" />
+    <LightGallery
+      :images="imageUrls"
+      :index="galleryIndex"
+      disable-scroll
+      @close="galleryIndex = null"
+    />
   </div>
 </template>
 
 <script>
-  import VueGallerySlideshow from 'vue-gallery-slideshow';
+  import { LightGallery } from 'vue-light-gallery';
 
+  /**
+   * Image gallery component with «lightbox» swiper function.
+   */
   export default {
     name: 'c-image-gallery',
     components: {
-      VueGallerySlideshow,
+      LightGallery,
     },
     // mixins: [],
 
@@ -34,7 +42,16 @@
       };
     },
 
-    // computed: {},
+    computed: {
+      /**
+       * Gets a list of only the URLs of the images.
+       *
+       * @returns {Array.<String>}
+       */
+      imageUrls() {
+        return this.images.map(img => img.url);
+      }
+    },
     // watch: {},
 
     // beforeCreate() {},
@@ -102,10 +119,18 @@
       max-width: 100%;
     }
 
-    .vgs__container {
-      @include media(sm) {
-        top: 10vh;
-      }
+    /* Plugin styling */
+    .light-gallery__modal {
+      background: rgba($color-grayscale--0, 0.9) !important;
+    }
+
+    .light-gallery__close {
+      background: none !important;
+    }
+
+    .light-gallery__prev,
+    .light-gallery__next {
+      background: rgba($color-primary--1, 0.8) !important;
     }
   }
 </style>
