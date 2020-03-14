@@ -3,7 +3,7 @@
     <template v-if="showNextEvents && nextEvents.length">
       <!-- Active events -->
       <h2 v-if="showTitle" :class="b('group-title')">
-        Anstehende Veranstaltungen
+        Anstehende Veranstaltungen:
       </h2>
       <ul :class="b('list', { next: true })">
         <li v-for="event in nextEvents"
@@ -34,7 +34,7 @@
     <!-- Old events -->
     <template v-if="showPastEvents && pastEvents.length">
       <h2 v-if="showTitle" :class="b('group-title')">
-        Vergangene Veranstaltungen
+        Vergangene Veranstaltungen:
       </h2>
       <ul :class="b('list', { past: true })">
         <li v-for="event in pastEvents"
@@ -120,7 +120,8 @@
 
           return this.eventList
             .filter(event => new Date(event.date) < currentDate)
-            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length - 1);
+            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length - 1)
+            .reverse();
         }
 
         return [];
@@ -185,7 +186,7 @@
       @extend %heading-h2;
 
       margin-top: $spacing--100;
-
+      font-weight: $font-weight--bold;
     }
 
     &__group-title:first-of-type {
@@ -267,11 +268,19 @@
     }
 
     &__title {
-      @include font($font-size--20, null, $font-weight--regular);
+      @include font($font-size--18, null, $font-weight--regular);
+
+      @include media(sm) {
+        font-size: $font-size--20;
+      }
     }
 
     &__text {
-      @include font($font-size--18, null, $font-weight--regular);
+      @include font($font-size--16, null, $font-weight--regular);
+
+      @include media(sm) {
+        font-size: $font-size--18;
+      }
     }
 
     &__download-button {

@@ -1,13 +1,21 @@
 %heading-h1 {
-  @include font($font-size--40, null, $font-weight--bold);
+  @include font($font-size--32, 36px, $font-weight--bold);
 
   color: $color-primary--1;
   text-transform: uppercase;
+
+  @include media(sm) {
+    @include font($font-size--40, 44px, $font-weight--bold);
+  }
 }
 
 %heading-h2 {
-  @include font($font-size--30, null, $font-weight--regular);
+  @include font($font-size--24, 28px, $font-weight--regular);
 
   font-family: $font-family--secondary;
   color: $color-primary--1;
+
+  @include media(sm) {
+    @include font($font-size--30, 34px, $font-weight--regular);
+  }
 }

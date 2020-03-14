@@ -65,8 +65,12 @@
 
 <style lang="scss">
   .events {
-    padding-top: $spacing--80;
-    padding-bottom: $spacing--80;
+    padding-top: $spacing--30;
+    padding-bottom: $spacing--50;
+
+    @include media(sm) {
+      padding-top: $spacing--80;
+    }
 
     &__title {
       @extend %heading-h1;
@@ -78,8 +82,12 @@
     &__subtitle {
       @extend %heading-h2;
 
-      margin-bottom: $spacing--80;
+      margin-bottom: $spacing--50;
       text-align: center;
+
+      @include media(sm) {
+        margin-bottom: $spacing--80;
+      }
     }
   }
 </style>

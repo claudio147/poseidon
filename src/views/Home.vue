@@ -99,14 +99,16 @@
   .home {
     &__intro {
       font-family: $font-family--secondary;
-      margin-top: $spacing--50;
-      font-size: $font-size--24;
-      margin-bottom: $spacing--100;
+      margin-top: $spacing--30;
+      font-size: $font-size--18;
+      margin-bottom: $spacing--50;
 
       @include media(sm) {
         display: flex;
+        font-size: $font-size--24;
+        margin-top: $spacing--50;
+        margin-bottom: $spacing--100;
       }
-
     }
 
     &__intro-left {
@@ -132,21 +134,30 @@
     &__intro-title {
       @extend %heading-h1;
 
+      margin-top: $spacing--30;
+      margin-bottom: 0;
       text-align: center;
-      margin-top: $spacing--80;
+
+      @include media(sm) {
+        margin-top: $spacing--80;
+      }
     }
 
     &__sub-title {
       @extend %heading-h1;
 
       text-align: center;
-      margin-bottom: $spacing--50;
+      margin-bottom: $spacing--30;
+
+      @include media(sm) {
+        margin-bottom: $spacing--50;
+      }
     }
 
     &__cta-wrapper {
       @extend %heading-h2;
 
-      padding: $spacing--30 0;
+      padding: $spacing--15 0;
       width: 100vw;
       position: relative;
       left: 50%;
@@ -155,16 +166,25 @@
       margin-right: -50vw;
       background-color: $color-primary--1;
       color: $color-grayscale--1000;
-      margin-bottom: $spacing--80;
+      margin-bottom: $spacing--50;
+
+      @include media(sm) {
+        padding: $spacing--30 0;
+        margin-bottom: $spacing--80;
+      }
     }
 
     &__cta-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: block;
       max-width: $contentWidth;
       margin: 0 auto;
       padding: 0 $spacing--15;
+
+      @include media(sm) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
     }
 
     &__cta-button,
@@ -172,7 +192,14 @@
       color: $color-grayscale--1000;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       border-bottom: 1px solid $color-grayscale--1000;
+      margin-top: $spacing--15;
+
+      @include media(sm) {
+        margin-top: 0;
+        justify-content: flex-start;
+      }
 
       .e-icon {
         margin-left: $spacing--10;

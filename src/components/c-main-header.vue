@@ -309,7 +309,7 @@
       display: flex;
       width: 100vw;
       justify-content: space-between;
-      min-height: 75px;
+      min-height: 60px;
 
       @include media(sm) {
         min-height: 60px;
@@ -410,6 +410,7 @@
     }
 
     &__link--logo {
+      z-index: 1;
       display: block;
       justify-content: center;
       position: relative;
@@ -460,11 +461,12 @@
 
     &__logo {
       max-width: 100%;
-      max-height: calc(100% + 15px);
+      max-height: calc(100% + 25px);
 
       @include media(sm) {
         position: absolute;
         top: -$spacing--25;
+        max-height: calc(100% + 15px);
       }
     }
 
@@ -513,10 +515,10 @@
 
     &__mobile-navigation {
       position: fixed;
-      top: 75px;
+      top: 60px;
       left: 0;
       width: 100vw;
-      height: calc(100vh - 75px);
+      height: calc(100vh - 60px);
       border-top: 1px solid $color-grayscale--200;
       // background-color: $color-grayscale--0;
       overflow-y: auto;

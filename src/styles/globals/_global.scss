@@ -46,10 +46,14 @@ h6 {
 }
 
 p {
-  @include font($font-size--22);
+  @include font($font-size--18);
 
   font-family: $font-family--secondary;
   font-weight: 400;
+
+  @include media(sm) {
+    @include font($font-size--22);
+  }
 }
 
 /* stylelint-disable selector-class-pattern, selector-max-id */

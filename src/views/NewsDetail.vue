@@ -113,27 +113,45 @@
 
 <style lang="scss">
   .news-detail {
-    padding-top: $spacing--80;
+    padding-top: $spacing--30;
+    padding-bottom: $spacing--50;
+
+    @include media(sm) {
+      padding-top: $spacing--80;
+    }
 
     &__action-bar {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: $spacing--10;
+      align-items: flex-start;
+      margin-bottom: $spacing--30;
+
+      @include media(sm) {
+        align-items: flex-end;
+        margin-bottom: $spacing--10;
+      }
     }
 
     &__title {
       @extend %heading-h1;
 
       text-align: center;
-      margin-bottom: $spacing--50;
+      margin-bottom: $spacing--30;
+
+      @include media(sm) {
+        margin-bottom: $spacing--50;
+      }
     }
 
     &__date {
       @extend %heading-h2;
 
-      font-size: $font-size--22;
+      font-size: $font-size--16;
       text-align: center;
+
+      @include media(sm) {
+        font-size: $font-size--22;
+      }
     }
 
     &__back-link {

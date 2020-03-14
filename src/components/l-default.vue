@@ -40,7 +40,7 @@
 
 <style lang="scss">
   .l-default {
-    padding-top: 75px; // Header height
+    padding-top: 60px; // Header height
     min-height: calc(100vh - 60px); // 100vh - footer height
 
     @include media(sm) {

@@ -78,7 +78,11 @@
     &__content {
       flex: 1 0 50%;
       max-width: 50%;
-      padding: $spacing--25 0;
+      padding: $spacing--10 0 $spacing--25;
+
+      @include media(sm) {
+        padding: $spacing--25 0;
+      }
 
       &--left {
         border-right: 5px solid $color-secondary--2;
@@ -98,7 +102,11 @@
     &__text {
       position: relative;
       border-bottom: 3px dotted $color-secondary--2;
-      padding: 0 $spacing--25;
+      padding: 0 $spacing--10;
+
+      @include media(sm) {
+        padding: 0 $spacing--25;
+      }
     }
 
     &__year {
