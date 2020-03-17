@@ -170,6 +170,7 @@
 
       img {
         max-width: 100%;
+        margin-bottom: $spacing--30;
       }
     }
 
