@@ -8,7 +8,9 @@
     <div :class="b('intro')">
       <div :class="b('intro-left')">
         <p>
-          Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und Tiefen erlebt. Heute präsentiert sich der Verein in bester Verfassung,was sich erfreulicherweise auch in den Mitgliederzahlen bemerkbar macht.
+          Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und Tiefen erlebt.
+          Heute präsentiert sich der Verein in bester Verfassung,was sich erfreulicherweise auch
+          in den Mitgliederzahlen bemerkbar macht.
           Aktuell erfreuen wir uns über mehr als 50 Aktivmitglieder.
         </p>
         <p>Seit einem Jahr führen wir eine Jungfischergruppe mit 10 Jungfischer.</p>

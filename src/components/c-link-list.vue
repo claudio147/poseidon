@@ -2,7 +2,9 @@
   <div :class="b()">
     <ul :class="b('group-list')">
       <li v-for="group in linkGroups" :key="group.id" :class="b('group-item')">
-        <h3 :class="b('group-title')">{{ group.title }}</h3>
+        <h3 :class="b('group-title')">
+          {{ group.title }}
+        </h3>
         <ul :class="b('link-list')">
           <li v-for="link in group.links" :key="link.url" :class="b('link-item')">
             <a :href="link.url" :class="b('link')" target="_blank">
