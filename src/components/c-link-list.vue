@@ -42,7 +42,13 @@
        * @returns {Array.<Object>}
        */
       linkGroups() {
-        return this.$store.getters.links || [];
+        const { links } = this.$store.getters;
+
+        if (Array.isArray(links)) {
+          return links.sort((valueA, valueB) => valueA.order - valueB.order);
+        }
+
+        return [];
       },
     },
     // watch: {},
@@ -114,6 +120,10 @@
     }
 
     &__link:hover {
+      #{$this}__link-url {
+        color: $color-secondary--2;
+      }
+
       #{$this}__link-text {
         color: $color-primary--1;
       }
@@ -134,8 +144,12 @@
     }
 
     &__link-url {
+      @include font($font-size--12, null, $font-weight--regular);
+
       display: block;
       hyphens: auto;
+      color: $color-grayscale--0;
+      margin-bottom: $spacing--10;
     }
 
     &__link-text {

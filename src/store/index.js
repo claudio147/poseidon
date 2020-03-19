@@ -343,6 +343,7 @@ const store = new Vuex.Store({
         if (Array.isArray(stories)) {
           commit('setLinks', stories.map(story => ({
             id: story.uuid,
+            order: parseInt(story.content.order, 10),
             title: story.content.title,
             links: story.content.links,
           })));
