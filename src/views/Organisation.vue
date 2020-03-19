@@ -8,9 +8,17 @@
       Fischereiverein Romanshorn (FVR)
     </h2>
     <div :class="b('content')">
-      <p :class="b('intro-text')">
-        Intro Text
-      </p>
+      <div :class="b('intro-text')">
+        <p>
+          Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und Tiefen erlebt. Heute präsentiert sich der Verein in bester Verfassung,was sich erfreulicherweise auch in den Mitgliederzahlen bemerkbar macht.
+          Aktuell erfreuen wir uns über mehr als 50 Aktivmitglieder.
+        </p>
+        <p>Seit einem Jahr führen wir eine Jungfischergruppe mit 10 Jungfischer.</p>
+        <p>Gemeinsam treffen wir uns im Jahr an 10 bis 12 Anlässen.</p>
+        <p>Der Höhepunkt des Jahres ist das Fischessen das an einem Wochenende im August stattfindet.</p>
+        <p>Herzlich willkommen im Fischerverein Romanshorn!</p>
+        <p><b>Petri Heil!</b></p>
+      </div>
 
       <h3 :class="b('content-title')">
         Verein
@@ -133,7 +141,7 @@
     }
 
     &__intro-text {
-
+      margin-bottom: $spacing--80;
     }
 
     &__content-title {

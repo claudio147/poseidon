@@ -1,11 +1,11 @@
 <template>
   <div :class="b()">
-    <template v-if="showNextEvents && nextEvents.length">
+    <template v-if="showNextEvents">
       <!-- Active events -->
       <h2 v-if="showTitle" :class="b('group-title')">
         Anstehende Veranstaltungen:
       </h2>
-      <ul :class="b('list', { next: true })">
+      <ul v-if="nextEvents.length" :class="b('list', { next: true })">
         <li v-for="event in nextEvents"
             :key="event.id"
             :class="b('item')">
@@ -29,6 +29,9 @@
           </div>
         </li>
       </ul>
+      <div v-else :class="b('no-results-text')">
+        Zurzeit stehen keine Termine an.
+      </div>
     </template>
 
     <!-- Old events -->
@@ -289,6 +292,11 @@
       right: $spacing--10;
 
       @extend %button-reset;
+    }
+
+    &__no-results-text {
+      color: $color-grayscale--200;
+      padding: $spacing--50 0;
     }
   }
 </style>

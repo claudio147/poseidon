@@ -8,15 +8,14 @@
     <div :class="b('intro')">
       <div :class="b('intro-left')">
         <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-          tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-          eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-          takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetet
-          ur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ma
-          gna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-          et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d
-          olor sit amet....
+          Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und Tiefen erlebt. Heute präsentiert sich der Verein in bester Verfassung,was sich erfreulicherweise auch in den Mitgliederzahlen bemerkbar macht.
+          Aktuell erfreuen wir uns über mehr als 50 Aktivmitglieder.
         </p>
+        <p>Seit einem Jahr führen wir eine Jungfischergruppe mit 10 Jungfischer.</p>
+        <p>Gemeinsam treffen wir uns im Jahr an 10 bis 12 Anlässen.</p>
+        <p>Der Höhepunkt des Jahres ist das Fischessen das an einem Wochenende im August stattfindet.</p>
+        <p>Herzlich willkommen im Fischerverein Romanshorn!</p>
+        <p><b>Petri Heil!</b></p>
       </div>
       <div :class="b('intro-right')">
         <img src="../assets/photo-of-person-holding-fishing-rod-2473502.jpg" alt="Seeforelle">
