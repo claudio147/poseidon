@@ -168,6 +168,11 @@
                 link: '/registration',
                 title: 'Anmeldung',
                 name: 'Anmeldung',
+              },
+              {
+                link: '/links',
+                title: 'Links',
+                name: 'Links',
               }
             ],
           },

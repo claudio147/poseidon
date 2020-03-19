@@ -27,6 +27,11 @@ const store = new Vuex.Store({
     events: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of partner links.
+     */
+    links: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
@@ -34,6 +39,7 @@ const store = new Vuex.Store({
       fetchDownloads: false,
       fetchGalleryImages: false,
       fetchEvents: false,
+      fetchLinks: false,
     }
   },
 
@@ -91,6 +97,15 @@ const store = new Vuex.Store({
         ? state.events.sort((valueA, valueB) => valueA.date.getTime() - valueB.date.getTime())
         : [];
     },
+
+    /**
+     * Gets the list of links.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array.<Object>}
+     */
+    links: state => state.links || [],
 
     /**
      * Gets an object with all requests and their state.
@@ -151,6 +166,16 @@ const store = new Vuex.Store({
      */
     setEvents(state, payload) {
       state.events = payload;
+    },
+
+    /**
+     * Updates the links in the state.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array.<Object>} payload - The list of links.
+     */
+    setLinks(state, payload) {
+      state.links = payload;
     },
 
     /**
@@ -295,6 +320,36 @@ const store = new Vuex.Store({
         }
       }, () => {
         commit('setRunningRequest', { id: 'fetchEvents', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the links from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchLinks({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchLinks', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'links',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          commit('setLinks', stories.map(story => ({
+            id: story.uuid,
+            title: story.content.title,
+            links: story.content.links,
+          })));
+          commit('setRunningRequest', { id: 'fetchLinks', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchLinks', isRunning: false });
       });
     },
   }

@@ -66,6 +66,11 @@ const routes = [
     component: () => import('../views/Contact.vue'),
   },
   {
+    path: '/links',
+    name: 'Links',
+    component: () => import('../views/Links.vue'),
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('../views/Error.vue'),
