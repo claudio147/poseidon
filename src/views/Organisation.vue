@@ -95,9 +95,9 @@
       return {
         slides: [
           {
-            src: 'https://a.storyblok.com/f/73482/2400x800/7cb58b06de/slider_07.jpg',
+            src: 'https://a.storyblok.com/f/73482/2400x800/a496b3ed83/bodensee_1.jpg',
             alt: 'Fischerboot in Sonnenuntergang'
-          }
+          },
         ],
       };
     },

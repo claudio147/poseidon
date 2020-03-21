@@ -75,19 +75,15 @@
       return {
         slides: [
           {
-            src: 'https://a.storyblok.com/f/73482/2400x800/20da0b2e38/slider_02.jpg',
+            src: 'https://a.storyblok.com/f/73482/2400x800/97363ed403/hafen_romanshorn_2.jpg',
             alt: 'dummy image',
           },
           {
-            src: 'https://a.storyblok.com/f/73482/2400x800/f94becd08f/slider_01.jpg',
+            src: 'https://a.storyblok.com/f/73482/2400x800/196362e122/hafen_romanshorn_6.jpg',
             alt: 'dummy image',
           },
           {
-            src: 'https://a.storyblok.com/f/73482/2400x800/65499c7327/slider_03.jpg',
-            alt: 'dummy image',
-          },
-          {
-            src: 'https://a.storyblok.com/f/73482/2400x800/0735ba50cd/slider_04.jpg',
+            src: 'https://a.storyblok.com/f/73482/2400x800/69226e1420/hafen_romanshorn_3.jpg',
             alt: 'dummy image',
           },
         ],

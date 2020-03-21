@@ -15,6 +15,12 @@
       </div>
       <div :class="b('map-wrapper')">
         <img src="../assets/street-view.png" alt="">
+        <p>
+          Gerne können Sie uns auch eine E-mail schreiben unter:
+          <a href="mailto:info@fischereiverein-romanshorn.ch">
+            info@fischereiverein-romanshorn.ch
+          </a>
+        </p>
       </div>
     </div>
   </div>

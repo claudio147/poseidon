@@ -203,24 +203,25 @@
     }
 
     &__notification {
-      margin-top: 50px;
+      margin-top: $spacing--25;
       padding: $spacing--20;
-      border: 1px solid $color-primary--1;
+      border: 2px dotted $color-primary--1;
       color: $color-grayscale--200;
-      border-radius: 3px;
 
       p {
+        @include font($font-size--16, null, $font-weight--regular);
+
+        color: $color-grayscale--1000;
         margin-bottom: 0;
       }
     }
 
     &__notification--type-success {
-      background-color: $color-success;
+      background-color: rgba($color-success, 0.6);
       border-color: $color-success;
     }
 
     &__notification--type-error {
-      color: $color-grayscale--1000;
       background-color: $color-error;
       border-color: $color-error;
     }
