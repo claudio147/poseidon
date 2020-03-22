@@ -16,6 +16,8 @@
 
 const functions = require('firebase-functions');
 const nodemailer = require('nodemailer');
+const axios = require('axios');
+
 // Configure the email transport using the default SMTP transport and a GMail account.
 // For other types of transports such as Sendgrid see https://nodemailer.com/transports/
 const senderEmail = functions.config().gmail.login;
@@ -270,4 +272,25 @@ exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid
   }
 
   return null;
+});
+
+/*
+ * Firebase Function to verify user response with Google recaptcha v3
+ */
+exports.sendRecaptcha = functions.https.onRequest(async(req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+
+  const secret = '6LfFFuMUAAAAAK0jCSph-eUF7DFtJFIrAm0I5a7-';
+
+  // Front-end will send the token
+  const { token } = req.query;
+  const response = await axios.get(`https://recaptcha.google.com/recaptcha/api/siteverify?secret=${secret}&response=${token}`);
+  const { data } = response;
+
+  if (data.success) {
+    // Send the score back
+    return res.status(200).send({ score: data.score });
+  }
+
+  return res.status(500).send({ score: null });
 });

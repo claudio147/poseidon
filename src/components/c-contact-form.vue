@@ -47,6 +47,8 @@
 </template>
 
 <script>
+  import googleRecaptcha from '../helpers/google-recaptcha';
+
   export default {
     name: 'c-contact-form',
     // components: {},
@@ -102,20 +104,26 @@
           return;
         }
 
-        this.requestIsRunning = true;
+        // Recaptcha check
+        googleRecaptcha('contactForm').then(() => {
+          this.requestIsRunning = true;
 
-        // eslint-disable-next-line no-undef
-        database.ref('/contacts').push(this.form, (error) => {
-          this.requestIsRunning = false;
-          this.resetForm();
+          // eslint-disable-next-line no-undef
+          database.ref('/contacts').push(this.form, (error) => {
+            this.requestIsRunning = false;
+            this.resetForm();
 
-          if (error) {
+            if (error) {
+              this.showNotification('error');
+              throw new Error(error);
+            } else {
+              this.showNotification('success');
+            }
+          });
+        })
+          .catch(() => {
             this.showNotification('error');
-            throw new Error(error);
-          } else {
-            this.showNotification('success');
-          }
-        });
+          });
       },
 
       /**

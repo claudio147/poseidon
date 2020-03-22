@@ -116,6 +116,7 @@
 </template>
 
 <script>
+  import googleRecaptcha from '../helpers/google-recaptcha';
 
   /**
    * Renders the registration form and handles the database requests.
@@ -193,20 +194,28 @@
           return;
         }
 
-        this.requestIsRunning = true;
+        // Recaptcha check
+        googleRecaptcha('registrationForm').then(() => {
+          // Success
+          this.requestIsRunning = true;
 
-        // eslint-disable-next-line no-undef
-        database.ref('/registration').push(this.form, (error) => {
-          this.requestIsRunning = false;
-          this.resetForm();
+          // eslint-disable-next-line no-undef
+          database.ref('/registration').push(this.form, (error) => {
+            this.requestIsRunning = false;
+            this.resetForm();
 
-          if (error) {
+            if (error) {
+              this.showNotification('error');
+              throw new Error(error);
+            } else {
+              this.showNotification('success');
+            }
+          });
+        })
+          .catch(() => {
+            // error
             this.showNotification('error');
-            throw new Error(error);
-          } else {
-            this.showNotification('success');
-          }
-        });
+          });
       },
 
       /**
