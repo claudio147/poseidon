@@ -52,8 +52,8 @@ exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWr
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body style="background-color: #0C5F79; color: #ffffff;">
-  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">
+<body style="background-color: #0C5F79; color: #ffffff; padding: 30px 15px;">
+  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 180px;">
   <h1>Neue Kontaktanfrage</h1>
   <p>Folgende Kontaktanfrage ist soeben über die Website eingegangen:</p>
   <table style="border: none; text-align: left; margin-top: 50px;">
@@ -115,8 +115,8 @@ exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWri
       '  <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
       '  <title>Document</title>\n' +
       '</head>\n' +
-      '<body style="background-color: #0C5F79; color: #ffffff;">\n' +
-      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 200px;">\n' +
+      '<body style="background-color: #0C5F79; color: #ffffff; padding: 30px 15px;">\n' +
+      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 180px;">\n' +
       '  <h1>Vielen Dank für Ihre Anfrage</h1>\n' +
       '  <p>Vielen Dank für Ihre Kontaktanfrage. Wir haben diese erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>\n' +
       '  <p></p><p>Freundliche Grüsse & <strong>Petri Heil</strong></p>\n' +
@@ -161,8 +161,8 @@ exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{ui
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
-<body style="background-color: #0C5F79; color: #ffffff;">
-  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">
+<body style="background-color: #0C5F79; color: #ffffff; padding: 30px 15px;">
+  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 180px;">
   <h1>Neue Mitglieds- Anmeldung</h1>
   <p>Folgende Neuanmeldung ist über die soeben über die Website eingegangen:</p>
   <table style="border: none; text-align: left; margin-top: 50px;">
@@ -248,8 +248,8 @@ exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid
       '  <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
       '  <title>Document</title>\n' +
       '</head>\n' +
-      '<body style="background-color: #0C5F79; color: #ffffff;">\n' +
-      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">\n' +
+      '<body style="background-color: #0C5F79; color: #ffffff; padding: 30px 15px;">\n' +
+      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 180px;">\n' +
       '  <h1>Vielen Dank für Ihre Anmeldung</h1>\n' +
       '  <p>Wir haben die Anfrage erhalten und werden diese umgehend prüfen.<br>Nach der Prüfung der Anfrage werden wir uns bei Ihnen melden.</p>\n' +
       '  <p>Freundliche Grüsse & <strong>Petri Heil</strong></p>\n' +

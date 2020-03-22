@@ -17,7 +17,7 @@
         <img src="../assets/street-view.png" alt="">
         <p>
           Gerne können Sie uns auch eine E-mail schreiben unter:
-          <a href="mailto:info@fischereiverein-romanshorn.ch">
+          <a href="" @click.prevent="onClickEmail">
             info@fischereiverein-romanshorn.ch
           </a>
         </p>
@@ -71,7 +71,11 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      onClickEmail() {
+        window.location.href = 'mailto:info@fischereiverein-romanshorn.ch';
+      }
+    },
     // render() {},
   };
 </script>
