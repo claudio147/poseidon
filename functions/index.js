@@ -280,7 +280,7 @@ exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid
 exports.sendRecaptcha = functions.https.onRequest(async(req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
 
-  const secret = '6LfFFuMUAAAAAK0jCSph-eUF7DFtJFIrAm0I5a7-';
+  const secret = functions.config().secret.googlerecaptchasecret;
 
   // Front-end will send the token
   const { token } = req.query;
