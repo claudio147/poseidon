@@ -31,9 +31,9 @@ const mailTransport = nodemailer.createTransport({
 });
 
 /**
- * E-mail to web administrator.
+ * CONTACT || E-mail to web administrator.
  */
-exports.sendEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
+exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -41,9 +41,42 @@ exports.sendEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrit
     from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
     replyTo: val.email,
     to: 'info@fischereiverein-romanshorn.ch',
-    subject: 'Kontaktformular Webseite',
+    subject: 'Kontaktanfrage Webseite',
     text: `Name: ${val.name}, E-Mail: ${val.email}, Nachricht: ${val.message}`,
-    html: `<h1>Kontaktaufnahme Website</h1><div><b>Name:</b>${val.name}</div><div><b>E-Mail:</b>${val.email}</div><div><b>Nachricht:</b>${val.message}</div>`,
+    html: `<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body style="background-color: #0C5F79; color: #ffffff;">
+  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">
+  <h1>Neue Kontaktanfrage</h1>
+  <p>Folgende Kontaktanfrage ist soeben über die Website eingegangen:</p>
+  <table style="border: none; text-align: left; margin-top: 50px;">
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td> ${val.name}</td>
+      </tr>
+      <tr>
+        <th>E-Mail</th>
+        <td> ${val.email}</td>
+      </tr>
+      <tr>
+        <th>Nachricht</th>
+        <td> ${val.message}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 50px;">Freundliche Grüsse & <strong>Petri Heil</strong></p>
+  <p>Ihr Fischereiverein Romanshorn</p>
+</body>
+</html>
+`,
     auth: {
       user: senderEmail,
       refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
@@ -61,9 +94,9 @@ exports.sendEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrit
 });
 
 /**
- * Confirmation E-mail to user.
+ * CONTACT || Confirmation E-mail to user.
  */
-exports.sendUserEmailConfirmation = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
+exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -71,9 +104,25 @@ exports.sendUserEmailConfirmation = functions.database.ref('/contacts/{uid}').on
     from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
     replyTo: 'info@fischereiverein-romanshorn.ch',
     to: val.email,
-    subject: 'Fischereiverein Romanshorn',
+    subject: 'Kontaktanfrage',
     text: 'Wir haben Ihre Nachricht erhalten und es wird sich schnellstmöglich jemand bei Ihnen melden.',
-    html: '<h1>Vielen Dank für die Anfrage</h1><div><p>Wir haben Ihre Nachricht erhalten und es wird sich schnellstmöglich jemand bei Ihnen melden.</p></div>',
+    html: '<!doctype html>\n' +
+      '<html lang="de">\n' +
+      '<head>\n' +
+      '  <meta charset="UTF-8">\n' +
+      '  <meta name="viewport"\n' +
+      '        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">\n' +
+      '  <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
+      '  <title>Document</title>\n' +
+      '</head>\n' +
+      '<body style="background-color: #0C5F79; color: #ffffff;">\n' +
+      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 200px;">\n' +
+      '  <h1>Vielen Dank für Ihre Anfrage</h1>\n' +
+      '  <p>Vielen Dank für Ihre Kontaktanfrage. Wir haben diese erhalten und werden uns schnellstmöglich bei Ihnen melden.</p>\n' +
+      '  <p></p><p>Freundliche Grüsse & <strong>Petri Heil</strong></p>\n' +
+      '  <p>Ihr Fischereiverein Romanshorn</p>\n' +
+      '</body>\n' +
+      '</html>\n',
     auth: {
       user: senderEmail,
       refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
@@ -91,9 +140,9 @@ exports.sendUserEmailConfirmation = functions.database.ref('/contacts/{uid}').on
 });
 
 /**
- * Confirmation E-mail to user.
+ * REGISTRATION || Confirmation E-mail to user.
  */
-exports.sendRegistrationToAdmin = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -101,9 +150,66 @@ exports.sendRegistrationToAdmin = functions.database.ref('/registration/{uid}').
     from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
     replyTo: val.email,
     to: 'info@fischereiverein-romanshorn.ch',
-    subject: 'Neue Registration Fischereiverein Romanshorn',
+    subject: 'Neue Anmeldung Fischereiverein Romanshorn',
     text: `Vorname: ${val.firstName}, Nachname: ${val.lastName}, Strasse: ${val.street} ${val.streetNumber}, PLZ/Ort: ${val.zip} ${val.city}, Telefon: ${val.phone}, E-Mail: ${val.email}, Geburtsdatum: ${val.birthDate}, Mitgliedschaft: ${val.memberType}, Nachricht: ${val.message}`,
-    html: `<h1>Neue Anmeldung</h1><div><b>Vor-/ Nachname:</b>${val.firstName} ${val.lastName}</div><div><b>Strasse:</b>${val.street} ${val.streetNumber}</div><div><b>PLZ/Ort:</b>${val.zip} / ${val.city}</div><div><b>Geburtsdatum:</b>${val.birthDate}</div><div><b>Telefon:</b>${val.phone} </div><div><b>Mitgliedschaft:</b>${val.memberType}</div><div><b>E-Mail:</b>${val.email}</div><div><b>Bemerkungen:</b>${val.message}</div>`,
+    html: `<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body style="background-color: #0C5F79; color: #ffffff;">
+  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">
+  <h1>Neue Mitglieds- Anmeldung</h1>
+  <p>Folgende Neuanmeldung ist über die soeben über die Website eingegangen:</p>
+  <table style="border: none; text-align: left; margin-top: 50px;">
+    <tbody>
+      <tr>
+        <th>Vorname</th>
+        <td> ${val.firstName}</td>
+      </tr>
+      <tr>
+        <th>Nachname</th>
+        <td> ${val.lastName}</td>
+      </tr>
+      <tr>
+        <th>Strasse</th>
+        <td> ${val.street} ${val.streetNumber}</td>
+      </tr>
+      <tr>
+        <th>PLZ / Ort</th>
+        <td> ${val.zip} / ${val.city}</td>
+      </tr>
+      <tr>
+        <th>Geburstdatum</th>
+        <td> ${val.birthDate}</td>
+      </tr>
+      <tr>
+        <th>Telefon</th>
+        <td> ${val.phone}</td>
+      </tr>
+      <tr>
+        <th>E-Mail</th>
+        <td> ${val.email}</td>
+      </tr>
+      <tr>
+        <th>Mitgliedschaft</th>
+        <td> ${val.memberType}</td>
+      </tr>
+      <tr>
+        <th>Bemerkungen</th>
+        <td> ${val.message}</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 50px;">Freundliche Grüsse & <strong>Petri Heil</strong></p>
+  <p>Ihr Fischereiverein Romanshorn</p>
+</body>
+</html>
+`,
     auth: {
       user: senderEmail,
       refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
@@ -121,9 +227,9 @@ exports.sendRegistrationToAdmin = functions.database.ref('/registration/{uid}').
 });
 
 /**
- * Registration confirmation E-mail to user.
+ * Registration || Confirmation E-mail to user.
  */
-exports.sendUserEmailConfirmation = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -131,9 +237,25 @@ exports.sendUserEmailConfirmation = functions.database.ref('/registration/{uid}'
     from: 'Fischereiverein Romanshorn <noreply@fischereiverein-romanshorn.ch>',
     replyTo: 'info@fischereiverein-romanshorn.ch',
     to: val.email,
-    subject: 'Fischereiverein Romanshorn',
+    subject: 'Anmeldung Fischereiverein Romanshorn',
     text: 'Wir haben Ihre Anmeldung erhalten und werden uns bei Ihnen melden sobald diese geprüft wurde.',
-    html: '<h1>Vielen Dank für die Anmeldung</h1><div><p>Wir haben Ihre Anmeldung erhalten und werden uns bei Ihnen melden sobald diese geprüft wurde.</p></div>',
+    html: '<!doctype html>\n' +
+      '<html lang="de">\n' +
+      '<head>\n' +
+      '  <meta charset="UTF-8">\n' +
+      '  <meta name="viewport"\n' +
+      '        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">\n' +
+      '  <meta http-equiv="X-UA-Compatible" content="ie=edge">\n' +
+      '  <title>Document</title>\n' +
+      '</head>\n' +
+      '<body style="background-color: #0C5F79; color: #ffffff;">\n' +
+      '  <img src="http://stage.fischereiverein-romanshorn.ch/img/logo_200x160.0a83cfc0.png" alt="Logo" style="max-width: 250px;">\n' +
+      '  <h1>Vielen Dank für Ihre Anmeldung</h1>\n' +
+      '  <p>Wir haben die Anfrage erhalten und werden diese umgehend prüfen.<br>Nach der Prüfung der Anfrage werden wir uns bei Ihnen melden.</p>\n' +
+      '  <p>Freundliche Grüsse & <strong>Petri Heil</strong></p>\n' +
+      '  <p>Ihr Fischereiverein Romanshorn</p>\n' +
+      '</body>\n' +
+      '</html>\n',
     auth: {
       user: senderEmail,
       refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
