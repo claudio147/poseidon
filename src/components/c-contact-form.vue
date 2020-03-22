@@ -133,6 +133,7 @@
         this.form.name = '';
         this.form.email = '';
         this.form.message = '';
+        this.form.phone = '';
       },
 
       /**
