@@ -96,3 +96,7 @@ body.no-scroll--position-fixed {
 [inline-template] { // Hides inline templates from flashing before rendering
   display: none;
 }
+
+.grecaptcha-badge {
+  display: none !important;
+}
