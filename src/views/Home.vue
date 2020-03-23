@@ -20,7 +20,7 @@
         <p><b>Petri Heil!</b></p>
       </div>
       <div :class="b('intro-right')">
-        <img src="../assets/photo-of-person-holding-fishing-rod-2473502.jpg" alt="Seeforelle">
+        <img src="../assets/hafen_romanshorn_4_3.jpg" alt="Hafen Romanshorn">
       </div>
     </div>
 
