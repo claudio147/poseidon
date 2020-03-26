@@ -2,7 +2,10 @@
   <div :class="b()">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(slide, index) in slides" :key="index">
-        <img :src="slide.src" :alt="slide.alt">
+        <img :src="slide.src"
+             :srcset="getSrcSet(slide.src)"
+             :sizes="sizes"
+             :alt="slide.alt">
       </swiper-slide>
       <div v-if="slides.length > 1" slot="pagination" class="swiper-pagination"></div>
     </swiper>
@@ -41,6 +44,14 @@
             el: '.swiper-pagination'
           }
         },
+
+        /**
+         * @type {String} Defines the sizes for the img element.
+         */
+        sizes: [
+          '100vw',
+          '(min-width: 2400px) 2400px',
+        ].join(','),
       };
     },
 
@@ -58,7 +69,27 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      /**
+       * Gets the srcset string for the givin original image src.
+       *
+       * @param {String} originalSrc - The original image src.
+       *
+       * @returns {String}
+       */
+      getSrcSet(originalSrc) {
+        const baseUrl = originalSrc.split('https://a.storyblok.com/')[1];
+
+        return [
+          `https://img2.storyblok.com/480x0/${baseUrl} 480w`,
+          `https://img2.storyblok.com/920x0/${baseUrl} 920w`,
+          `https://img2.storyblok.com/1240x0/${baseUrl} 1240w`,
+          `https://img2.storyblok.com/1680x0/${baseUrl} 1680w`,
+          `https://img2.storyblok.com/1920x0/${baseUrl} 1920w`,
+          `https://img2.storyblok.com/2400x0/${baseUrl} 2400w`,
+        ].join(',');
+      }
+    },
     // render() {},
   };
 </script>

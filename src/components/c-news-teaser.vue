@@ -3,6 +3,8 @@
     <!-- Image -->
     <img v-if="image"
          :src="image.src"
+         :srcset="getSrcSet(image.src)"
+         :sizes="sizes"
          :alt="image.alt"
          :class="b('image')">
 
@@ -44,9 +46,18 @@
         default: null,
       },
     },
-    // data() {
-    //   return {};
-    // },
+    data() {
+      return {
+        /**
+         * @type {String} Defines the sizes for the img element.
+         */
+        sizes: [
+          '(min-width: 0px) 740px',
+          '(min-width: 768px) 540px',
+          '(min-width: 1200px) 450px',
+        ].join(','),
+      };
+    },
 
     computed: {
       /**
@@ -95,7 +106,26 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      /**
+       * Gets the srcset string for the givin original image src.
+       *
+       * @param {String} originalSrc - The original image src.
+       *
+       * @returns {String}
+       */
+      getSrcSet(originalSrc) {
+        const baseUrl = originalSrc.split('//a.storyblok.com/')[1];
+
+        return [
+          `https://img2.storyblok.com/480x0/${baseUrl} 480w`,
+          `https://img2.storyblok.com/600x0/${baseUrl} 600w`,
+          `https://img2.storyblok.com/920x0/${baseUrl} 920w`,
+          `https://img2.storyblok.com/1200x0/${baseUrl} 1200w`,
+          `https://img2.storyblok.com/1500x0/${baseUrl} 1500w`,
+        ].join(',');
+      }
+    },
     // render() {},
   };
 </script>

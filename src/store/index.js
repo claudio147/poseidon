@@ -282,7 +282,11 @@ const store = new Vuex.Store({
               id: story.uuid,
               title: story.content.title,
               text: story.content.description,
-              images: story.content.images.map(image => ({ url: image.filename, alt: image.name }))
+              images: story.content.images.map(image => ({
+                url: image.filename,
+                thumbnailUrl: `https://img2.storyblok.com/540x540/smart/${image.filename.split('//a.storyblok.com/')[1]}`,
+                alt: image.name
+              }))
             })));
           commit('setRunningRequest', { id: 'fetchGalleryImages', isRunning: false });
         }

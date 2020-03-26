@@ -4,7 +4,7 @@
       <div v-for="(img, index) in images"
            :key="`${index}-${img.alt}`"
            :class="b('image-container')"
-           :style="{ backgroundImage: `url(${img.url})` }"
+           :style="{ backgroundImage: `url(${img.thumbnailUrl})` }"
            @click="galleryIndex = index">
       </div>
     </div>
