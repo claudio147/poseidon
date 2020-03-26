@@ -20,7 +20,10 @@
         <p><b>Petri Heil!</b></p>
       </div>
       <div :class="b('intro-right')">
-        <img src="../assets/hafen_romanshorn_4_3.jpg" alt="Hafen Romanshorn">
+        <img src="https://a.storyblok.com/f/73482/1500x1000/7f4bfc2245/hafen_romanshorn_4_3.jpg"
+             :sizes="sizes"
+             :srcset="getSrcSet('https://a.storyblok.com/f/73482/1500x1000/7f4bfc2245/hafen_romanshorn_4_3.jpg')"
+             alt="Hafen Romanshorn">
       </div>
     </div>
 
@@ -87,7 +90,36 @@
             alt: 'dummy image',
           },
         ],
+
+        /**
+         * @type {String} Defines the sizes for the img element.
+         */
+        sizes: [
+          '(min-width: 0px) 740px',
+          '(min-width: 768px) 570px',
+          '(min-width: 1200px) 690px',
+        ].join(','),
       };
+    },
+
+    methods: {
+      /**
+       * Gets the srcset string for the givin original image src.
+       *
+       * @param {String} originalSrc - The original image src.
+       *
+       * @returns {String}
+       */
+      getSrcSet(originalSrc) {
+        const baseUrl = originalSrc.split('//a.storyblok.com/')[1];
+
+        return [
+          `https://img2.storyblok.com/600x0/${baseUrl} 600w`,
+          `https://img2.storyblok.com/920x0/${baseUrl} 920w`,
+          `https://img2.storyblok.com/1200x0/${baseUrl} 1200w`,
+          `https://img2.storyblok.com/1500x0/${baseUrl} 1500w`,
+        ].join(',');
+      },
     },
   };
 </script>
