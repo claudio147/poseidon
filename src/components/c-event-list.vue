@@ -143,7 +143,7 @@
 
           return this.eventList
             .filter(event => new Date(event.date) >= currentDate)
-            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length - 1);
+            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length);
         }
 
         return [];
