@@ -18,9 +18,7 @@
             <h3 :class="b('title')">
               {{ event.title }}
             </h3>
-            <p :class="b('text')">
-              {{ event.text }}
-            </p>
+            <div v-html="marked(event.text, { sanitize: true })" :class="b('text')"></div>
             <button :class="b('download-button')"
                     title="Termin in Kalender speichern"
                     @click="download(event)">
@@ -63,6 +61,7 @@
 </template>
 
 <script>
+  import marked from 'marked/marked.min.js';
   import eIcon from './e-icon';
 
   /**
@@ -167,6 +166,8 @@
     // destroyed() {},
 
     methods: {
+      marked,
+
       /**
        * Downloads the given event as a .ics file for the local calendar.
        *
