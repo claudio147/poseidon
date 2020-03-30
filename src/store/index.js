@@ -32,6 +32,11 @@ const store = new Vuex.Store({
     links: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of leading board members.
+     */
+    leadingBoardMembers: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
@@ -40,6 +45,7 @@ const store = new Vuex.Store({
       fetchGalleryImages: false,
       fetchEvents: false,
       fetchLinks: false,
+      fetchMembers: false,
     }
   },
 
@@ -106,6 +112,15 @@ const store = new Vuex.Store({
      * @returns {Array.<Object>}
      */
     links: state => state.links || [],
+
+    /**
+     * Gets the list of leading board members.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array<Object>}
+     */
+    getLeadingBoardMembers: state => state.leadingBoardMembers || [],
 
     /**
      * Gets an object with all requests and their state.
@@ -176,6 +191,16 @@ const store = new Vuex.Store({
      */
     setLinks(state, payload) {
       state.links = payload;
+    },
+
+    /**
+     * Updates the leading board members.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array.<Object>} payload - The list of members.
+     */
+    setLeadingBoardMembers(state, payload) {
+      state.leadingBoardMembers = payload;
     },
 
     /**
@@ -356,6 +381,44 @@ const store = new Vuex.Store({
         }
       }, () => {
         commit('setRunningRequest', { id: 'fetchLinks', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the members from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchMembers({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchMembers', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'board',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          const { persons } = stories[0].content || {};
+
+          if (persons) {
+            commit('setLeadingBoardMembers', persons.map(person => ({
+              id: person.uuid,
+              name: person.name,
+              function: person.function,
+              email: person.email,
+              image: person.image,
+              phone: person.phone,
+            })));
+          }
+
+          commit('setRunningRequest', { id: 'fetchMembers', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchMembers', isRunning: false });
       });
     },
   }

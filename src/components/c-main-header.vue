@@ -145,6 +145,11 @@
             name: 'Verein',
             children: [
               {
+                link: '/board',
+                title: 'Vorstand',
+                name: 'Vorstand',
+              },
+              {
                 link: '/history',
                 title: 'Vereinshistore des Sportfischervereins',
                 name: 'Vereinshistorie',

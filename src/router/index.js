@@ -71,6 +71,11 @@ const routes = [
     component: () => import('../views/Links.vue'),
   },
   {
+    path: '/board',
+    name: 'Vorstand',
+    component: () => import('../views/Board.vue'),
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('../views/Error.vue'),
