@@ -17,6 +17,15 @@
       {{ newsEntry.title }}
     </h1>
     <div v-html="parsedText" :class="b('content')"></div>
+
+    <ul v-if="ranking.length" :class="b('ranking-wrapper')">
+      <li v-for="item in ranking"
+          :key="item._uid"
+          :class="b('ranking-item')"
+      >
+        <c-ranking-item :item="item" />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -24,6 +33,7 @@
   import marked from 'marked/marked.min.js';
   import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook.vue';
   import news from '../mixins/news';
+  import cRankingItem from '../components/c-ranking-item';
 
   /**
    * News detail page.
@@ -31,6 +41,7 @@
   export default {
     name: 'news-detail',
     components: {
+      cRankingItem,
       VueGoodshareFacebook,
     },
     mixins: [
@@ -70,6 +81,12 @@
       url() {
         return window ? window.location.href : '';
       },
+
+      /**
+       * Gets the parsed content text.
+       *
+       * @returns {String}
+       */
       parsedText() {
         const { text } = this.newsEntry || {};
 
@@ -86,6 +103,17 @@
 
         return date ? this.$dayjs(date).format('DD. MMMM YYYY') : null;
       },
+
+      /**
+       * Gets the optional ranking array.
+       *
+       * @returns {Array.<Object>}
+       */
+      ranking() {
+        const { ranking } = this.newsEntry || {};
+
+        return Array.isArray(ranking) && ranking.length ? ranking : [];
+      }
     },
     // watch: {},
 
@@ -171,6 +199,21 @@
       img {
         max-width: 100%;
         margin-bottom: $spacing--30;
+      }
+    }
+
+    &__ranking-wrapper {
+      @extend %list-reset;
+
+      max-width: 1000px;
+      margin: $spacing--50 auto 0;
+    }
+
+    &__ranking-item:not(:last-of-type) {
+      margin-bottom: $spacing--30;
+
+      @include media(sm) {
+        margin-bottom: $spacing--50;
       }
     }
 

@@ -220,6 +220,7 @@ const store = new Vuex.Store({
             },
             teaserText: story.content.teaserText,
             text: story.content.text,
+            ranking: story.content.ranking,
             date: new Date(story.content.date.split('-').join('/')),
             keywords: story.content.keywords,
           })));
