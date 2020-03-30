@@ -15,6 +15,21 @@
 <script>
   export default {
     name: 'talent-schedule',
+    metaInfo: {
+      title: 'Jungfischer Agenda',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Eine Übersicht aller Termine und Kurse welche für unsere Jungfischer wichtig sind.',
+        },
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'Jungfischer, Agenda, Termine, Events, Fischer, Fisch, Sportverrein, Club',
+        }
+      ]
+    },
     // components: {},
     // mixins: [],
 

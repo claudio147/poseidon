@@ -23,6 +23,22 @@
       cRegistrationForm,
       cSlider,
     },
+    metaInfo: {
+      title: 'Anmeldung',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Werden Sie jetzt Mitglied und melden Sie sich direkt übers Online Formular an.',
+        },
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'Anmeldung, Registration, Mitglieder-werden, Sportfischer, Verein, Romanshorn, '
+            + 'Fischer, Fisch, Sportverrein, Club',
+        }
+      ]
+    },
     // components: {},
     // mixins: [],
 

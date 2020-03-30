@@ -28,6 +28,24 @@
     components: {
       cImageGallery,
     },
+
+    metaInfo: {
+      title: 'Galerie',
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: 'Entdecken Sie hier einige Impressionen zum Vereinsleben und zu aktuellen '
+            + 'Vereins Anlässen.',
+        },
+        {
+          vmid: 'keywords',
+          name: 'keywords',
+          content: 'Fotos, Bilder, Veranstaltungen, Vereinstreff, Sportfischerverein, Fischereiverein',
+        }
+      ]
+    },
+
     // mixins: [],
 
     // props: {},

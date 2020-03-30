@@ -76,7 +76,10 @@
         {
           vmid: 'description',
           name: 'description',
-          content: 'Der Fischerverein ist....',
+          content: 'Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und '
+            + 'Tiefen erlebt. Heute präsentiert sich der Verein in bester Verfassung,was sich '
+            + 'erfreulicherweise auch in den Mitgliederzahlen bemerkbar macht. Aktuell erfreuen '
+            + 'wir uns über mehr als 50 Aktivmitglieder.',
         },
         {
           vmid: 'keywords',

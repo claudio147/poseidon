@@ -25,12 +25,12 @@
         {
           vmid: 'description',
           name: 'description',
-          content: 'Neuigkeiten und News über den Sportfischerverein Romanshorn',
+          content: 'Hier erfahren Sie wann unsere nächsten Vereins- Events stattfinden.',
         },
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'News, Aktuelles, Sportfischerverein, Fischereiverein',
+          content: 'Events, Termine, Veranstaltungen, Sportfischerverein, Fischereiverein',
         }
       ]
     },
