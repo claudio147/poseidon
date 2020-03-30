@@ -2,9 +2,9 @@
   <div :class="b()">
     <div :class="b('image-wrapper')">
       <div v-for="(img, index) in images"
+           v-lazy:background-image="img.thumbnailUrl"
            :key="`${index}-${img.alt}`"
            :class="b('image-container')"
-           :style="{ backgroundImage: `url(${img.thumbnailUrl})` }"
            @click="galleryIndex = index">
       </div>
     </div>

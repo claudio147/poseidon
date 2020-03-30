@@ -2,8 +2,8 @@
   <router-link :class="b()" :to="detailUrl" :title="news.title">
     <!-- Image -->
     <img v-if="image"
-         :src="image.src"
-         :srcset="getSrcSet(image.src)"
+         v-lazy="image.src"
+         :data-srcset="getSrcSet(image.src)"
          :sizes="sizes"
          :alt="image.alt"
          :class="b('image')">

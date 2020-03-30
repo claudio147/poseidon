@@ -23,6 +23,7 @@
     "vue-gallery-slideshow": "^1.5.0",
     "vue-goodshare": "^1.3.3",
     "vue-ics": "^0.1.2",
+    "vue-lazyload": "^1.3.3",
     "vue-light-gallery": "^1.0.1",
     "vue-meta": "^2.3.1",
     "vue-router": "^3.1.3",

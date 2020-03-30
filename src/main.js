@@ -7,6 +7,7 @@ import StoryblokVue from 'storyblok-vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import ICS from 'vue-ics';
+import VueLazyload from 'vue-lazyload';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -24,6 +25,7 @@ Vue.use(Vuex);
 Vue.use(StoryblokVue);
 Vue.use(dayjs);
 Vue.use(VueAxios, axios);
+Vue.use(VueLazyload);
 
 window.vm = new Vue({ store });
 

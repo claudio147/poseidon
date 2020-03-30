@@ -2,8 +2,8 @@
   <div :class="b()">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(slide, index) in slides" :key="index">
-        <img :src="slide.src"
-             :srcset="getSrcSet(slide.src)"
+        <img v-lazy="slide.src"
+             :data-srcset="getSrcSet(slide.src)"
              :sizes="sizes"
              :alt="slide.alt">
       </swiper-slide>
