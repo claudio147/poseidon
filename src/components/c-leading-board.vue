@@ -20,7 +20,7 @@
           <a v-if="member.email"
              :class="b('link')"
              href=""
-             @click="onOpenEmail(member.email)"
+             @click.prevent="onOpenEmail(member.email)"
           >
             <e-icon icon="i-mail" width="20" height="20" />
             <span>{{ member.email }}</span>
