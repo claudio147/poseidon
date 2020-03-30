@@ -176,8 +176,15 @@
       download(event) {
         const { date, title, text } = event;
 
-        this.$ics.addEvent('ch-de', title, text, '', date, date);
-        this.$ics.download(title);
+        this.$ics.addEvent('ch-de', title, text.replace(/\n/g, ''), '', date, date);
+
+        const calendar = this.$ics.calendar();
+        const blob = new Blob([calendar], { type: 'text/calendar' });
+        const link = document.createElement('a');
+
+        link.href = window.URL.createObjectURL(blob);
+        link.download = `${title}.ics`;
+        link.click();
       }
     },
     // render() {},
