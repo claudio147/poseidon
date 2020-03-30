@@ -140,17 +140,17 @@
          */
         navigationLeft: [
           {
-            link: '/organisation',
+            link: '/verein',
             title: 'Sportfischerverein',
             name: 'Verein',
             children: [
               {
-                link: '/board',
+                link: '/vorstand',
                 title: 'Vorstand',
                 name: 'Vorstand',
               },
               {
-                link: '/history',
+                link: '/geschichte',
                 title: 'Vereinshistore des Sportfischervereins',
                 name: 'Vereinshistorie',
               },
@@ -160,17 +160,17 @@
                 name: 'News und Aktuelles',
               },
               {
-                link: '/events',
+                link: '/termine',
                 title: 'Termine',
                 name: 'Termine',
               },
               {
-                link: '/documents',
+                link: '/dokumente',
                 title: 'Dokumente zum Download',
                 name: 'Dokumente',
               },
               {
-                link: '/registration',
+                link: '/anmeldung',
                 title: 'Anmeldung',
                 name: 'Anmeldung',
               },
@@ -182,17 +182,17 @@
             ],
           },
           {
-            link: '/talents',
+            link: '/jungfischer',
             title: 'Unsere Jungfischer',
             name: 'Jungfischer',
             children: [
               {
-                link: '/agenda',
+                link: '/jungfischer-termine',
                 title: 'Jahresprogramm',
                 name: 'Jahresprogramm',
               },
               {
-                link: '/registration',
+                link: '/anmeldung',
                 title: 'Anmeldung',
                 name: 'Anmeldung',
               }
@@ -205,12 +205,12 @@
          */
         navigationRight: [
           {
-            link: '/gallery',
+            link: '/galerie',
             title: 'Bilder vom Verreinsleben',
             name: 'Galerie',
           },
           {
-            link: '/contact',
+            link: '/kontakt',
             title: 'Kontaktformular',
             name: 'Kontakt',
           }

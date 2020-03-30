@@ -11,12 +11,12 @@ const routes = [
     component: Home,
   },
   {
-    path: '/organisation',
+    path: '/verein',
     name: 'Verein',
     component: () => import('../views/Organisation.vue'),
   },
   {
-    path: '/history',
+    path: '/geschichte',
     name: 'Geschichte',
     component: () => import('../views/History.vue'),
   },
@@ -31,37 +31,37 @@ const routes = [
     component: () => import('../views/NewsDetail.vue'),
   },
   {
-    path: '/events',
+    path: '/termine',
     name: 'Events',
     component: () => import('../views/Events.vue'),
   },
   {
-    path: '/documents',
+    path: '/dokumente',
     name: 'Dokumente',
     component: () => import('../views/Documents.vue'),
   },
   {
-    path: '/registration',
+    path: '/anmeldung',
     name: 'Anmeldung',
     component: () => import('../views/Registration.vue'),
   },
   {
-    path: '/talents',
+    path: '/jungfischer',
     name: 'Jungfischer',
     component: () => import('../views/Talents.vue'),
   },
   {
-    path: '/agenda',
+    path: '/jungfischer-termine',
     name: 'Agenda',
     component: () => import('../views/Talent-schedule.vue'),
   },
   {
-    path: '/gallery',
+    path: '/galerie',
     name: 'Galerie',
     component: () => import('../views/Gallery.vue'),
   },
   {
-    path: '/contact',
+    path: '/kontakt',
     name: 'Kontakt',
     component: () => import('../views/Contact.vue'),
   },
@@ -71,7 +71,7 @@ const routes = [
     component: () => import('../views/Links.vue'),
   },
   {
-    path: '/board',
+    path: '/vorstand',
     name: 'Vorstand',
     component: () => import('../views/Board.vue'),
   },
