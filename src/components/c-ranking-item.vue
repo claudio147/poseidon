@@ -189,6 +189,7 @@
 
       color: $color-grayscale--1000;
       margin-top: $spacing--10;
+      text-align: center;
 
       @include media(xs) {
         margin-top: $spacing--20;
@@ -196,8 +197,6 @@
 
       @include media(sm) {
         @include font($font-size--24, 24px, $font-weight--bold);
-
-        //color: $color-secondary--2;
       }
     }
   }

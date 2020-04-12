@@ -2,10 +2,17 @@
   <div :class="b()">
     <swiper :options="swiperOption">
       <swiper-slide v-for="(slide, index) in slides" :key="index">
-        <img v-lazy="slide.src"
+        <img v-if="index === 0"
+             :srcset="getSrcSet(slide.src)"
+             :sizes="sizes"
+             :alt="slide.alt"
+        >
+        <img v-else
+             v-lazy="slide.src"
              :data-srcset="getSrcSet(slide.src)"
              :sizes="sizes"
-             :alt="slide.alt">
+             :alt="slide.alt"
+        >
       </swiper-slide>
       <div v-if="slides.length > 1" slot="pagination" class="swiper-pagination"></div>
     </swiper>

@@ -273,9 +273,11 @@
     &__date {
       @extend %heading-h2;
 
+      display: inline-block;
       font-size: $font-size--24;
       color: $color-grayscale--1000;
       font-weight: $font-weight--bold;
+      max-width: calc(100% - 35px);
     }
 
     &__title {

@@ -41,7 +41,7 @@
         <span>
           Jetzt Mitglied werden!
         </span>
-        <router-link to="/registration" :class="b('cta-button')">
+        <router-link to="/anmeldung" :class="b('cta-button')">
           zur Anmeldung
           <e-icon icon="i-contact"
                   width="30"

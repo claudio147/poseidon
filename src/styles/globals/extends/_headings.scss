@@ -3,6 +3,7 @@
 
   color: $color-primary--1;
   text-transform: uppercase;
+  hyphens: auto;
 
   @include media(sm) {
     @include font($font-size--40, 44px, $font-weight--bold);
