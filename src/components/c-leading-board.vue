@@ -183,6 +183,7 @@
       align-items: center;
       color: $color-grayscale--1000;
       text-decoration: underline;
+      hyphens: auto;
 
       .e-icon {
         margin-right: $spacing--10;
