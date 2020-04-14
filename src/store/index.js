@@ -100,7 +100,7 @@ const store = new Vuex.Store({
      */
     events(state) {
       return Array.isArray(state.events)
-        ? state.events.sort((valueA, valueB) => valueA.date.getTime() - valueB.date.getTime())
+        ? state.events.sort((valueA, valueB) => valueA.unix - valueB.unix)
         : [];
     },
 
@@ -339,13 +339,16 @@ const store = new Vuex.Store({
         const { stories } = data || {};
 
         if (Array.isArray(stories)) {
-          commit('setEvents', stories.map(story => ({
+          const events = stories.map(story => ({
             id: story.uuid,
             title: story.content.title,
             text: story.content.text,
             image: story.content.image,
             date: new Date(story.content.date.split('-').join('/')),
-          })));
+            unix: new Date(vm.$dayjs(story.content.date).format()).getTime(),
+          }));
+
+          commit('setEvents', events.filter(event => event.date && event.title));
           commit('setRunningRequest', { id: 'fetchEvents', isRunning: false });
         }
       }, () => {
