@@ -190,6 +190,8 @@
       color: $color-grayscale--1000;
       margin-top: $spacing--10;
       text-align: center;
+      max-width: 100%;
+      hyphens: auto;
 
       @include media(xs) {
         margin-top: $spacing--20;
