@@ -8,17 +8,18 @@
       Der Fischereiverein Romanshorn hat eine aktive Nachwuchsförderung.
     </h2>
     <div :class="b('content-block')">
-      <p :class="b('content-block-left')">
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-        eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetet
-        ur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore ma
-        gna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-        et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum d
-        olor sit amet....
-      </p>
-      <img :class="b('content-block-right')" src="../assets/man-holding-a-gray-fish-3338528.jpg" alt="">
+      <div :class="b('content-block-left')">
+        <!-- eslint-disable max-len -->
+        <p>Die Jungfischergruppe des Fischereiverein Romanshorn wurde 2019 neu gegründet und besteht aus momentan ca. 10 Jungfischern. Das Ziel ist es, interessierten Jugendlichen zwischen 10 und 18 Jahren die Grundsätze der Fischerei, das Verständnis und den Respekt gegenüber der Natur und vor allem dem Lebewesen Fisch näher zu bringen.</p>
+        <p>Die Jungfischergruppe hat jährlich zwischen acht und zehn Termine, welche vor allem am Obersee stattfinden. Es gibt aber auch Termine an anderen Gewässern der Schweiz und angrenzendem Ausland (Österreich und Deutschland).</p>
+        <p>Der Mitgliederbeitrag für Jungfischer beträgt CHF 30.- pro Jahr. Bei speziellen Anlässen können zusätzliche Kosten entstehen, welche aber vorgängig mitgeteilt werden.</p>
+        <p>Willkommen sind alle Jugendlichen zwischen 10 und 18 Jahren. Es ist auch nicht erforderlich, dass man eine Grundkenntnis hat. Da Markus und Michi (Verantwortlich für Aus- und Weiterbildung) Sana- Instruktoren sind, können Jungfischer optimal auf die Sana- Prüfung vorbereitet werden. Die Sana- Kurse finden in der Hütte des Fischereiverein Romanshorn statt.</p>
+      </div>
+      <div :class="b('content-block-right')">
+        <img :srcset="getSrcSet('https://a.storyblok.com/f/73482/1500x2095/c7ecee55b1/hafen_romanshorn_8.jpg')"
+             :sizes="sizes"
+             alt="">
+      </div>
     </div>
 
     <!-- CTA -->
@@ -41,16 +42,40 @@
     </h2>
     <div :class="b('person-block')">
       <div :class="b('person-left')">
-        <img src="../assets/adult-beard-boy-casual-220453.jpg" alt="">
-        <h4 :class="b('person-name')">
-          Max Hose
-        </h4>
+        <img src="../assets/dummy_person.jpg" alt="">
+        <div :class="b('person-content')">
+          <h4 :class="b('person-name')">
+            Markus Schättin
+          </h4>
+          <a :class="b('link')"
+             href="mailto:m.schaettin@fischereiverein-romanshorn.ch"
+          >
+            <e-icon icon="i-mail" width="20" height="20" />
+            <span>m.schaettin@fischereiverein-romanshorn.ch</span>
+          </a>
+          <a :class="b('link')" href="tel:0786862754">
+            <e-icon icon="i-phone" width="20" height="20" />
+            <span>078 686 27 54</span>
+          </a>
+        </div>
       </div>
       <div :class="b('person-right')">
-        <img src="../assets/women-s-white-and-black-button-up-collared-shirt-774909.jpg" alt="">
-        <h4 :class="b('person-name')">
-          Jana Pullover
-        </h4>
+        <img src="../assets/dummy_person.jpg" alt="">
+        <div :class="b('person-content')">
+          <h4 :class="b('person-name')">
+            Michi
+          </h4>
+          <!-- <a :class="b('link')"
+             href="mailto:m.schaettin@fischereiverein-romanshorn.ch"
+          >
+            <e-icon icon="i-mail" width="20" height="20" />
+            <span>m.schaettin@fischereiverein-romanshorn.ch</span>
+          </a>
+          <a :class="b('link')" href="tel:0786862754">
+            <e-icon icon="i-phone" width="20" height="20" />
+            <span>078 686 27 54</span>
+          </a>-->
+        </div>
       </div>
     </div>
   </div>
@@ -92,6 +117,16 @@
             alt: 'Jungfischer am Angeln'
           }
         ],
+
+        /**
+         * @type {String} Defines the sizes for the img element.
+         */
+        sizes: [
+          '(min-width: 1200px) 750px',
+          '(min-width: 768px) 590px',
+          '(min-width: 480px) 740px',
+          '(min-width: 0px) 450px',
+        ].join(','),
       };
     },
 
@@ -109,7 +144,26 @@
     // beforeDestroy() {},
     // destroyed() {},
 
-    // methods: {},
+    methods: {
+      /**
+       * Gets the srcset string for the givin original image src.
+       *
+       * @param {String} originalSrc - The original image src.
+       *
+       * @returns {String}
+       */
+      getSrcSet(originalSrc) {
+        const baseUrl = originalSrc.split('//a.storyblok.com/')[1];
+
+        return [
+          `https://img2.storyblok.com/480x0/${baseUrl} 480w`,
+          `https://img2.storyblok.com/600x0/${baseUrl} 600w`,
+          `https://img2.storyblok.com/750x0/${baseUrl} 750w`,
+          `https://img2.storyblok.com/1200x0/${baseUrl} 1200w`,
+          `https://img2.storyblok.com/1500x0/${baseUrl} 1500w`,
+        ].join(',');
+      }
+    },
     // render() {},
   };
 </script>
@@ -158,6 +212,10 @@
       @include media(sm) {
         padding-left: $spacing--15;
         max-width: 50%;
+      }
+
+      img {
+        max-width: 100%;
       }
     }
 
@@ -243,10 +301,34 @@
     }
 
     &__person-name {
-      @include font($font-size--18);
+      @include font($font-size--22, 22px);
 
-      text-align: center;
-      color: $color-primary--1;
+      /*text-align: center;*/
+      color: $color-grayscale--1000;
+      margin-bottom: $spacing--15;
+    }
+
+    &__person-content {
+      background-color: $color-secondary--2;
+      padding: $spacing--15;
+      color: $color-grayscale--1000;
+      min-height: 120px;
+    }
+
+    &__link {
+      display: flex;
+      align-items: center;
+      color: $color-grayscale--1000;
+      text-decoration: underline;
+      hyphens: auto;
+
+      .e-icon {
+        margin-right: $spacing--10;
+      }
+    }
+
+    &__link:not(:last-of-type) {
+      margin-bottom: $spacing--5;
     }
   }
 </style>

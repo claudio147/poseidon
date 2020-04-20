@@ -52,9 +52,9 @@
          * @type {String} Defines the sizes for the img element.
          */
         sizes: [
-          '(min-width: 0px) 740px',
-          '(min-width: 768px) 540px',
           '(min-width: 1200px) 450px',
+          '(min-width: 768px) 540px',
+          '(min-width: 0px) 740px',
         ].join(','),
       };
     },
