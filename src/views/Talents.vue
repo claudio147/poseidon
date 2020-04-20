@@ -40,54 +40,25 @@
     <h2 :class="b('sub-title')">
       Unsere Jungfischer Betreuer
     </h2>
-    <div :class="b('person-block')">
-      <div :class="b('person-left')">
-        <img src="../assets/dummy_person.jpg" alt="">
-        <div :class="b('person-content')">
-          <h4 :class="b('person-name')">
-            Markus Schättin
-          </h4>
-          <a :class="b('link')"
-             href="mailto:m.schaettin@fischereiverein-romanshorn.ch"
-          >
-            <e-icon icon="i-mail" width="20" height="20" />
-            <span>m.schaettin@fischereiverein-romanshorn.ch</span>
-          </a>
-          <a :class="b('link')" href="tel:0786862754">
-            <e-icon icon="i-phone" width="20" height="20" />
-            <span>078 686 27 54</span>
-          </a>
-        </div>
-      </div>
-      <div :class="b('person-right')">
-        <img src="../assets/dummy_person.jpg" alt="">
-        <div :class="b('person-content')">
-          <h4 :class="b('person-name')">
-            Michi
-          </h4>
-          <!-- <a :class="b('link')"
-             href="mailto:m.schaettin@fischereiverein-romanshorn.ch"
-          >
-            <e-icon icon="i-mail" width="20" height="20" />
-            <span>m.schaettin@fischereiverein-romanshorn.ch</span>
-          </a>
-          <a :class="b('link')" href="tel:0786862754">
-            <e-icon icon="i-phone" width="20" height="20" />
-            <span>078 686 27 54</span>
-          </a>-->
-        </div>
-      </div>
-    </div>
+    <ul :class="b('supervisor-list')">
+      <li v-for="(person, index) in supervisors"
+          :key="index"
+          :class="b('supervisor-item')">
+        <c-person :person="person" :image-sizes="supervisorImageSizes" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
   import eIcon from '../components/e-icon';
   import cSlider from '../components/c-slider';
+  import cPerson from '../components/c-person';
 
   export default {
     name: 'talents',
     components: {
+      cPerson,
       eIcon,
       cSlider,
     },
@@ -127,14 +98,39 @@
           '(min-width: 480px) 740px',
           '(min-width: 0px) 450px',
         ].join(','),
+
+        /**
+         * @type {String} Defines the sizes for the supervisor images.
+         */
+        supervisorImageSizes: [
+          '(min-width: 1200px) 400px',
+          '(min-width: 768px) 400px',
+          '(min-width: 480px) 740px',
+          '(min-width: 0px) 450px',
+        ].join(','),
       };
     },
 
-    // computed: {},
+    computed: {
+      /**
+       * Gets the list of all link groups.
+       *
+       * @returns {Array.<Object>}
+       */
+      supervisors() {
+        const { getTalentSupervisors } = this.$store.getters;
+
+        return Array.isArray(getTalentSupervisors) ? getTalentSupervisors : [];
+      },
+    },
     // watch: {},
 
     // beforeCreate() {},
-    // created() {},
+    created() {
+      if (!this.supervisors.length) {
+        this.$store.dispatch('fetchTalentSupervisors', { vm: this });
+      }
+    },
     // beforeMount() {},
     // mounted() {},
     // beforeUpdate() {},
@@ -271,64 +267,30 @@
       }
     }
 
-    &__person-block {
-      max-width: 1000px;
-      margin: $spacing--50 auto;
+    &__supervisor-list {
+      @extend %list-reset;
 
-      @include media(sm) {
-        display: flex;
-      }
-
-      img {
-        max-width: 100%;
-      }
-    }
-
-    &__person-left {
-      @include media(sm) {
-        flex: 1 0 50%;
-        max-width: 50%;
-        padding-right: $spacing--15;
-      }
-    }
-
-    &__person-right {
-      @include media(sm) {
-        flex: 1 0 50%;
-        max-width: 50%;
-        padding-left: $spacing--15;
-      }
-    }
-
-    &__person-name {
-      @include font($font-size--22, 22px);
-
-      /*text-align: center;*/
-      color: $color-grayscale--1000;
-      margin-bottom: $spacing--15;
-    }
-
-    &__person-content {
-      background-color: $color-secondary--2;
-      padding: $spacing--15;
-      color: $color-grayscale--1000;
-      min-height: 120px;
-    }
-
-    &__link {
       display: flex;
-      align-items: center;
-      color: $color-grayscale--1000;
-      text-decoration: underline;
-      hyphens: auto;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-      .e-icon {
-        margin-right: $spacing--10;
+    &__supervisor-item {
+      flex: 1 0 100%;
+      max-width: 100%;
+      padding: $spacing--25;
+
+      @include media(sm) {
+        flex: 1 0 50%;
+        max-width: 50%;
       }
     }
 
-    &__link:not(:last-of-type) {
-      margin-bottom: $spacing--5;
+    .c-person {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
   }
 </style>

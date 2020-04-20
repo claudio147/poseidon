@@ -37,6 +37,11 @@ const store = new Vuex.Store({
     leadingBoardMembers: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of persons which are supervisors for the talents.
+     */
+    talentSupervisors: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
@@ -46,6 +51,7 @@ const store = new Vuex.Store({
       fetchEvents: false,
       fetchLinks: false,
       fetchMembers: false,
+      fetchTalentSupervisors: false,
     }
   },
 
@@ -118,9 +124,18 @@ const store = new Vuex.Store({
      *
      * @param {Object} state - The vuex store state.
      *
-     * @returns {Array<Object>}
+     * @returns {Array.<Object>}
      */
     getLeadingBoardMembers: state => state.leadingBoardMembers || [],
+
+    /**
+     * Gets the list of talent supervisors.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array.<Object>}
+     */
+    getTalentSupervisors: state => state.talentSupervisors || [],
 
     /**
      * Gets an object with all requests and their state.
@@ -201,6 +216,16 @@ const store = new Vuex.Store({
      */
     setLeadingBoardMembers(state, payload) {
       state.leadingBoardMembers = payload;
+    },
+
+    /**
+     * Updates the talent supervisor members.
+     *
+     * @param {Object} state - Current state object.
+     * @param {Array.<Object>} payload - The list of members.
+     */
+    setTalentSupervisors(state, payload) {
+      state.talentSupervisors = payload;
     },
 
     /**
@@ -422,6 +447,44 @@ const store = new Vuex.Store({
         }
       }, () => {
         commit('setRunningRequest', { id: 'fetchMembers', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the members from the CMS.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchTalentSupervisors({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'jungfischer/jungfischer-betreuung',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          const { persons } = stories[0].content || {};
+
+          if (persons) {
+            commit('setTalentSupervisors', persons.map(person => ({
+              id: person.uuid,
+              name: person.name,
+              function: person.function,
+              email: person.email,
+              image: person.image,
+              phone: person.phone,
+            })));
+          }
+
+          commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: false });
       });
     },
   }
