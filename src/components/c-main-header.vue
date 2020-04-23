@@ -141,7 +141,7 @@
         navigationLeft: [
           {
             link: '/verein',
-            title: 'Sportfischerverein',
+            title: 'Fischereiverein',
             name: 'Verein',
             children: [
               {

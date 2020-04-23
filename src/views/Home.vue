@@ -6,19 +6,7 @@
       Fischerverein Romanshorn
     </h1>
     <div :class="b('intro')">
-      <div :class="b('intro-left')">
-        <p>
-          Der Fischerverein Romanshorn hat in den letzten 66 Jahren diverse Höhen und Tiefen erlebt.
-          Heute präsentiert sich der Verein in bester Verfassung,was sich erfreulicherweise auch
-          in den Mitgliederzahlen bemerkbar macht.
-          Aktuell erfreuen wir uns über mehr als 50 Aktivmitglieder.
-        </p>
-        <p>Seit 2019 führen wir eine Jungfischergruppe mit 10 Jungfischern.</p>
-        <p>Gemeinsam treffen wir uns im Jahr an 10 bis 12 Anlässen.</p>
-        <p>Der Höhepunkt des Jahres ist das Fischessen das an einem Wochenende im August stattfindet.</p>
-        <p>Herzlich willkommen im Fischerverein Romanshorn!</p>
-        <p><b>Petri Heil!</b></p>
-      </div>
+      <div v-html="parsedIntroText" :class="b('intro-left')"></div>
       <div :class="b('intro-right')">
         <img src="https://a.storyblok.com/f/73482/1500x1000/7f4bfc2245/hafen_romanshorn_4_3.jpg"
              :sizes="sizes"
@@ -61,6 +49,7 @@
 </template>
 
 <script>
+  import marked from 'marked/marked.min.js';
   import eIcon from '../components/e-icon';
   import cSlider from '../components/c-slider';
   import cNewsList from '../components/c-news-list';
@@ -123,6 +112,20 @@
       };
     },
 
+    computed: {
+      /**
+       * Gets the parsed content text.
+       *
+       * @returns {String}
+       */
+      parsedIntroText() {
+        const { getTexts } = this.$store.getters;
+        const introText = getTexts.find(item => item.slug === 'homepage-intro');
+
+        return introText ? marked(introText.text, { sanitize: true }) : '';
+      },
+    },
+
     methods: {
       /**
        * Gets the srcset string for the givin original image src.
@@ -166,6 +169,10 @@
         flex: 1 0 50%;
         max-width: 50%;
         padding-right: $spacing--20;
+      }
+
+      p {
+        margin-bottom: $spacing--10;
       }
     }
 

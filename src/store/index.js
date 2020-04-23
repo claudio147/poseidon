@@ -42,6 +42,11 @@ const store = new Vuex.Store({
     talentSupervisors: [],
 
     /**
+     * @type {Array.<Object>} Holds the list of text over the whole page.
+     */
+    texts: [],
+
+    /**
      * @type {Object} Holds the request states.
      */
     runningRequests: {
@@ -52,6 +57,7 @@ const store = new Vuex.Store({
       fetchLinks: false,
       fetchMembers: false,
       fetchTalentSupervisors: false,
+      fetchTexts: false,
     }
   },
 
@@ -136,6 +142,15 @@ const store = new Vuex.Store({
      * @returns {Array.<Object>}
      */
     getTalentSupervisors: state => state.talentSupervisors || [],
+
+    /**
+     * Gets the list of texts.
+     *
+     * @param {Object} state - The vuex store state.
+     *
+     * @returns {Array.<Object>}
+     */
+    getTexts: state => state.texts || [],
 
     /**
      * Gets an object with all requests and their state.
@@ -226,6 +241,16 @@ const store = new Vuex.Store({
      */
     setTalentSupervisors(state, payload) {
       state.talentSupervisors = payload;
+    },
+
+    /**
+     * Updates the list of texts.
+     *
+     * @param {Object} state - The vuex store state.
+     * @param {Array.<Object>} payload - The list of texts.
+     */
+    setTexts(state, payload) {
+      state.texts = payload;
     },
 
     /**
@@ -480,6 +505,37 @@ const store = new Vuex.Store({
               phone: person.phone,
             })));
           }
+
+          commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: false });
+        }
+      }, () => {
+        commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: false });
+      });
+    },
+
+    /**
+     * Fetches the texts.
+     *
+     * @param {Object} context - The vuex context object.
+     * @param {Object} context.commit - The current commit object.
+     * @param {Object} payload - The payload object.
+     * @param {Object} payload.vm - The Vue instance.
+     */
+    fetchTexts({ commit }, { vm }) {
+      commit('setRunningRequest', { id: 'fetchTexts', isRunning: true });
+
+      vm.$storyblok.getAll({
+        starts_with: 'text/',
+        version: 'published'
+      }, (data) => {
+        const { stories } = data || {};
+
+        if (Array.isArray(stories)) {
+          commit('setTexts', stories.map(story => ({
+            id: story.id,
+            slug: story.slug,
+            text: story.content.text,
+          })));
 
           commit('setRunningRequest', { id: 'fetchTalentSupervisors', isRunning: false });
         }

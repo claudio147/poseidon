@@ -46,6 +46,7 @@
       this.$storyblok.init({
         accessToken: '84Gnj7hdJqclcGCBaTpdOAtt'
       });
+      this.$store.dispatch('fetchTexts', { vm: this });
     }
   };
 </script>

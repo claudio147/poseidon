@@ -8,13 +8,7 @@
       Der Fischereiverein Romanshorn hat eine aktive Nachwuchsförderung.
     </h2>
     <div :class="b('content-block')">
-      <div :class="b('content-block-left')">
-        <!-- eslint-disable max-len -->
-        <p>Die Jungfischergruppe des Fischereiverein Romanshorn wurde 2019 neu gegründet und besteht aus momentan ca. 10 Jungfischern. Das Ziel ist es, interessierten Jugendlichen zwischen 10 und 18 Jahren die Grundsätze der Fischerei, das Verständnis und den Respekt gegenüber der Natur und vor allem dem Lebewesen Fisch näher zu bringen.</p>
-        <p>Die Jungfischergruppe hat jährlich zwischen acht und zehn Termine, welche vor allem am Obersee stattfinden. Es gibt aber auch Termine an anderen Gewässern der Schweiz und angrenzendem Ausland (Österreich und Deutschland).</p>
-        <p>Der Mitgliederbeitrag für Jungfischer beträgt CHF 30.- pro Jahr. Bei speziellen Anlässen können zusätzliche Kosten entstehen, welche aber vorgängig mitgeteilt werden.</p>
-        <p>Willkommen sind alle Jugendlichen zwischen 10 und 18 Jahren. Es ist auch nicht erforderlich, dass man eine Grundkenntnis hat. Da Markus und Michi (Verantwortlich für Aus- und Weiterbildung) Sana- Instruktoren sind, können Jungfischer optimal auf die Sana- Prüfung vorbereitet werden. Die Sana- Kurse finden in der Hütte des Fischereiverein Romanshorn statt.</p>
-      </div>
+      <div v-html="parsedText" :class="b('content-block-left')"></div>
       <div :class="b('content-block-right')">
         <img :srcset="getSrcSet('https://a.storyblok.com/f/73482/1500x2095/c7ecee55b1/hafen_romanshorn_8.jpg')"
              :sizes="sizes"
@@ -51,6 +45,7 @@
 </template>
 
 <script>
+  import marked from 'marked/marked.min';
   import eIcon from '../components/e-icon';
   import cSlider from '../components/c-slider';
   import cPerson from '../components/c-person';
@@ -121,6 +116,18 @@
         const { getTalentSupervisors } = this.$store.getters;
 
         return Array.isArray(getTalentSupervisors) ? getTalentSupervisors : [];
+      },
+
+      /**
+       * Gets the parsed content text.
+       *
+       * @returns {String}
+       */
+      parsedText() {
+        const { getTexts } = this.$store.getters;
+        const introText = getTexts.find(item => item.slug === 'talents');
+
+        return introText ? marked(introText.text, { sanitize: true }) : '';
       },
     },
     // watch: {},
