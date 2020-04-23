@@ -30,7 +30,7 @@
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'Events, Termine, Veranstaltungen, Sportfischerverein, Fischereiverein',
+          content: 'Events, Termine, Veranstaltungen, Fischereiverein, Fischereiverein',
         }
       ]
     },

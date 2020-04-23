@@ -29,12 +29,12 @@
         {
           vmid: 'description',
           name: 'description',
-          content: 'Die Geschichte des Sportfischervereins von 1954 bis heute.',
+          content: 'Die Geschichte des Fischereivereins von 1954 bis heute.',
         },
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'Sportfischerverein, Romanshorn, Geschichte, Fischereiverein',
+          content: 'Fischereiverein, Romanshorn, Geschichte, Fischereiverein',
         }
       ]
     },

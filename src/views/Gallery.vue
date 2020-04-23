@@ -41,7 +41,7 @@
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'Fotos, Bilder, Veranstaltungen, Vereinstreff, Sportfischerverein, Fischereiverein',
+          content: 'Fotos, Bilder, Veranstaltungen, Vereinstreff, Fischereiverein, Fischereiverein',
         }
       ]
     },

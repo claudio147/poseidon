@@ -78,7 +78,7 @@
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'Sportfischerverein, Romanshorn, Geschichte, Fischereiverein, Fischer, Sport, '
+          content: 'Fischereiverein, Romanshorn, Geschichte, Fischereiverein, Fischer, Sport, '
             + 'Verein, Hobby, Spass, Bodensee',
         }
       ]

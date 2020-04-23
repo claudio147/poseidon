@@ -30,7 +30,7 @@
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'Links, Partner, Partnervereine, Sportfischerverein, Fischereiverein',
+          content: 'Links, Partner, Partnervereine, Fischereiverein, Fischereiverein',
         }
       ]
     },

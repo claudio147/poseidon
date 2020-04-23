@@ -25,12 +25,12 @@
         {
           vmid: 'description',
           name: 'description',
-          content: 'Neuigkeiten und News über den Sportfischerverein Romanshorn',
+          content: 'Neuigkeiten und News über den Fischereiverein Romanshorn',
         },
         {
           vmid: 'keywords',
           name: 'keywords',
-          content: 'News, Aktuelles, Sportfischerverein, Fischereiverein',
+          content: 'News, Aktuelles, Fischereiverein, Fischereiverein',
         }
       ]
     },

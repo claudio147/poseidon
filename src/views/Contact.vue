@@ -37,7 +37,7 @@
         {
           vmid: 'description',
           name: 'description',
-          content: 'Kontakt aufnehmen mit dem Sportfischerverein Romanshorn.',
+          content: 'Kontakt aufnehmen mit dem Fischereiverein Romanshorn.',
         },
         {
           vmid: 'keywords',
