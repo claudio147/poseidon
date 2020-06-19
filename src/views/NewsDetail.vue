@@ -193,17 +193,10 @@
     }
 
     &__content {
+      @extend %cms;
+
       max-width: 1000px;
       margin: 0 auto;
-
-      img {
-        max-width: 100%;
-        margin-bottom: $spacing--30;
-      }
-
-      a {
-        text-decoration: underline;
-      }
     }
 
     &__ranking-wrapper {

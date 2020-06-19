@@ -6,13 +6,13 @@
     <h2 :class="b('sub-title')">
       Eine Übersicht aller Termine und Kurse welche für unsere Jungfischer wichtig sind.
     </h2>
-    <a :class="b('link')" href="http://www.anglerausbildung.ch/sana-kurse/">
-      >>Hier gehts zu den aktuellen Kursangeboten
-    </a>
+    <div v-html="contentText" :class="b('content')"></div>
   </div>
 </template>
 
 <script>
+  import marked from 'marked/marked.min';
+
   export default {
     name: 'talent-schedule',
     metaInfo: {
@@ -38,7 +38,19 @@
     //   return {};
     // },
 
-    // computed: {},
+    computed: {
+      /**
+       * Gets the list of all link groups.
+       *
+       * @returns {Array.<Object>}
+       */
+      contentText() {
+        const { getTexts } = this.$store.getters;
+        const text = getTexts.find(item => item.slug === 'talents-schedule');
+
+        return text ? marked(text.text, { sanitize: true }) : '';
+      },
+    },
     // watch: {},
 
     // beforeCreate() {},
@@ -73,13 +85,8 @@
       margin-bottom: $spacing--50;
     }
 
-    &__link {
-      color: $color-grayscale--200;
-      border-bottom: 1px solid $color-grayscale--200;
-
-      &:hover {
-        color: $color-secondary--2;
-      }
+    &__content {
+      @extend %cms;
     }
   }
 </style>
