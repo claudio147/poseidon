@@ -27,8 +27,8 @@ const mailTransport = nodemailer.createTransport({
   secure: true,
   auth: {
     type: 'OAuth2',
-    clientId: '713762336079-cnafpqdrdog5v5ubeacbuoogh6gkmu44.apps.googleusercontent.com',
-    clientSecret: 'R2bYH_-A7hHO5wd-Mf_t2OxZ'
+    clientId: '118839792184-ff44lc3kp5k4c6fipqv7ccsger6ji3ef.apps.googleusercontent.com',
+    clientSecret: 'BG5ymEISPdu4eGSC0yyTg4c0'
   }
 });
 
@@ -81,8 +81,8 @@ exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWr
 `,
     auth: {
       user: senderEmail,
-      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
-      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
+      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
     }
   };
 
@@ -127,8 +127,8 @@ exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWri
       '</html>\n',
     auth: {
       user: senderEmail,
-      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
-      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
+      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
     }
   };
 
@@ -214,8 +214,8 @@ exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{ui
 `,
     auth: {
       user: senderEmail,
-      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
-      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
+      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
     }
   };
 
@@ -260,8 +260,8 @@ exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid
       '</html>\n',
     auth: {
       user: senderEmail,
-      refreshToken: '1//04yxdZU9xEPZYCgYIARAAGAQSNwF-L9IrCFJoPR9hk6UTHttCX3NM4WVZ3si95TuV_SBDDPWHcAtvAuJNF6ZSMf84Ol2CaGfL-Go',
-      accessToken: 'ya29.Il-9BzGPPlwRx6FNsuD2vR3cfXPh4747rRgFTzf8M3owSEcNoBCwkiDD_PECiXEUX0aVkLl5TiPOvsqAOaRhxJe2YARRNCTcgY0upCkwpOkRWyQP6ho3DaXOTQ15Z0BU6Q',
+      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
+      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
     }
   };
 
