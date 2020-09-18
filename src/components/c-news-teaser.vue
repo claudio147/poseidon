@@ -2,8 +2,12 @@
   <router-link :class="b()" :to="detailUrl" :title="news.title">
     <!-- Image -->
     <img v-if="image"
-         v-lazy="image.src"
-         :data-srcset="getSrcSet(image.src)"
+         v-lazy="{
+           src: image.srcWebP,
+           error: image.src,
+           loading: image.loadingUrl,
+         }"
+         :data-srcset="getSrcSet(image.srcWebP)"
          :sizes="sizes"
          :alt="image.alt"
          :class="b('image')">
@@ -116,13 +120,14 @@
        */
       getSrcSet(originalSrc) {
         const baseUrl = originalSrc.split('//a.storyblok.com/')[1];
+        const modifiedBaseUrl = originalSrc.split('https://img2.storyblok.com/')[1];
 
         return [
-          `https://img2.storyblok.com/480x0/${baseUrl} 480w`,
-          `https://img2.storyblok.com/600x0/${baseUrl} 600w`,
-          `https://img2.storyblok.com/920x0/${baseUrl} 920w`,
-          `https://img2.storyblok.com/1200x0/${baseUrl} 1200w`,
-          `https://img2.storyblok.com/1500x0/${baseUrl} 1500w`,
+          `https://img2.storyblok.com/480x0/${baseUrl || modifiedBaseUrl} 480w`,
+          `https://img2.storyblok.com/600x0/${baseUrl || modifiedBaseUrl} 600w`,
+          `https://img2.storyblok.com/920x0/${baseUrl || modifiedBaseUrl} 920w`,
+          `https://img2.storyblok.com/1200x0/${baseUrl || modifiedBaseUrl} 1200w`,
+          `https://img2.storyblok.com/1500x0/${baseUrl || modifiedBaseUrl} 1500w`,
         ].join(',');
       }
     },
@@ -145,6 +150,10 @@
 
     &__image {
       max-width: 100%;
+    }
+
+    &__image[lazy="loading"] {
+      filter: blur(4px);
     }
 
     &__content {

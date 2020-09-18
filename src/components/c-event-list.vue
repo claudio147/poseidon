@@ -9,7 +9,10 @@
         <li v-for="event in nextEvents"
             :key="event.id"
             :class="b('item')">
-          <div :style="{ backgroundImage: `url('${event.image}')` }"
+          <div v-lazy:background-image="{
+                 src: event.image.webP,
+                 error: event.image.src,
+               }"
                :class="b('image')"></div>
           <div :class="b('content')">
             <span :class="b('date')">

@@ -291,6 +291,8 @@ const store = new Vuex.Store({
             title: story.content.title,
             image: {
               src: story.content.image,
+              loadingUrl: `https://img2.storyblok.com/filters:quality(5)/${story.content.image.split('//a.storyblok.com/')[1]}`,
+              srcWebP: `https://img2.storyblok.com/filters:format(webp)/${story.content.image.split('//a.storyblok.com/')[1]}`,
               alt: '',
             },
             teaserText: story.content.teaserText,
@@ -361,6 +363,8 @@ const store = new Vuex.Store({
               images: story.content.images.map(image => ({
                 url: image.filename,
                 thumbnailUrl: `https://img2.storyblok.com/540x540/smart/${image.filename.split('//a.storyblok.com/')[1]}`,
+                thumbnailWebP: `https://img2.storyblok.com/540x540/filters:format(webp)/${image.filename.split('//a.storyblok.com/')[1]}`,
+                loadingUrl: `https://img2.storyblok.com/540x540/filters:quality(5)/${image.filename.split('//a.storyblok.com/')[1]}`,
                 alt: image.name
               }))
             })));
@@ -393,7 +397,10 @@ const store = new Vuex.Store({
             id: story.uuid,
             title: story.content.title,
             text: story.content.text,
-            image: story.content.image,
+            image: {
+              src: story.content.image,
+              webP: `https://img2.storyblok.com/filters:format(webp)/${story.content.image.split('//a.storyblok.com/')[1]}`,
+            },
             date: new Date(story.content.date.split('-').join('/')),
             unix: new Date(vm.$dayjs(story.content.date).format()).getTime(),
           }));

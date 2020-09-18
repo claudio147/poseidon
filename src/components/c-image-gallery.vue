@@ -2,7 +2,11 @@
   <div :class="b()">
     <div :class="b('image-wrapper')">
       <div v-for="(img, index) in images"
-           v-lazy:background-image="img.thumbnailUrl"
+           v-lazy:background-image="{
+             src: img.thumbnailWebP,
+             loading: img.loadingUrl,
+             error: img.thumbnailUrl
+           }"
            :key="`${index}-${img.alt}`"
            :class="b('image-container')"
            @click="galleryIndex = index">
@@ -106,6 +110,10 @@
         max-width: 20%;
         border-width: 10px;
       }
+    }
+
+    &__image-container[lazy="loading"] {
+      filter: blur(4px);
     }
 
     &__image-container::before {

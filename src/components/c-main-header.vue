@@ -42,7 +42,7 @@
                    :class="b('link', { logo: true })"
                    @click.native="mobileNavigationIsOpen = false">
         <span class="invisible">zur Startseite</span>
-        <img src="../assets/logo_200x160.png" alt="Logo Fischereiverein Romanshorn" :class="b('logo')">
+        <img src="../assets/logo_200x160.svg" alt="Logo Fischereiverein Romanshorn" :class="b('logo')">
       </router-link>
 
       <!-- Navigation Desktop rechts -->

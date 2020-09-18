@@ -3,7 +3,7 @@
     <c-main-header />
     <l-default>
       <transition name="slide-fade">
-        <keep-alive>
+        <keep-alive exclude="news-detail">
           <router-view />
         </keep-alive>
       </transition>
