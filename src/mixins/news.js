@@ -33,8 +33,10 @@ export default {
      * @returns {Object|null}
      */
     newsEntry() {
-      if (this.newsId && this.newsList.length) {
-        return this.$store.getters.getNewsById(this.newsId);
+      const { newsId, newsList } = this;
+
+      if (newsId && newsList.length) {
+        return this.$store.getters.getNewsById(newsId);
       }
 
       return null;

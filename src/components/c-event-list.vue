@@ -115,14 +115,16 @@
        * @returns {Array.<Object>}
        */
       pastEvents() {
-        if (Array.isArray(this.eventList)) {
+        const { eventList, maxItems } = this;
+
+        if (Array.isArray(eventList)) {
           const currentDate = new Date();
 
           currentDate.setDate(currentDate.getDate() - 1);
 
-          return this.eventList
+          return eventList
             .filter(event => new Date(event.date) < currentDate)
-            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length - 1)
+            .slice(0, maxItems > 0 ? maxItems : eventList.length - 1)
             .reverse();
         }
 
@@ -135,14 +137,16 @@
        * @returns {Array.<Object>}
        */
       nextEvents() {
-        if (Array.isArray(this.eventList)) {
+        const { eventList, maxItems } = this;
+
+        if (Array.isArray(eventList)) {
           const currentDate = new Date();
 
           currentDate.setDate(currentDate.getDate() - 1);
 
-          return this.eventList
+          return eventList
             .filter(event => new Date(event.date) >= currentDate)
-            .slice(0, this.maxItems > 0 ? this.maxItems : this.eventList.length);
+            .slice(0, maxItems > 0 ? maxItems : eventList.length);
         }
 
         return [];

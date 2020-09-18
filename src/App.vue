@@ -3,7 +3,9 @@
     <c-main-header />
     <l-default>
       <transition name="slide-fade">
-        <router-view />
+        <keep-alive>
+          <router-view />
+        </keep-alive>
       </transition>
     </l-default>
     <c-main-footer />

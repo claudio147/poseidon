@@ -42,8 +42,10 @@
        * @returns {Array.<Object>}
        */
       computedNewsList() {
-        if (Array.isArray(this.newsList)) {
-          return this.maxItems > 0 ? this.newsList.slice(0, this.maxItems) : this.newsList;
+        const { maxItems, newsList } = this;
+
+        if (Array.isArray(newsList)) {
+          return maxItems > 0 ? newsList.slice(0, maxItems) : newsList;
         }
 
         return [];
