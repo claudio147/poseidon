@@ -3,27 +3,27 @@
     <!-- Form -->
     <form :class="b('form')" @submit.prevent="onSubmitForm">
       <label :class="b('label')">
-        <span :class="b('label-text')">Ihr Name*</span>
-        <input v-model="form.name"
-               :class="b('input', { text: true })"
-               name="name"
-               type="text">
+<!--        <span :class="b('label-text')">Ihr Name*</span>-->
+        <e-input v-model="form.name"
+                 label="Ihr Name"
+                 name="name"
+                 type="text" />
       </label>
 
       <label :class="b('label')">
-        <span :class="b('label-text')">E-Mail*</span>
-        <input v-model="form.email"
-               :class="b('input', { text: true })"
-               name="email"
-               type="email">
+<!--        <span :class="b('label-text')">E-Mail*</span>-->
+        <e-input v-model="form.email"
+                 label="E-Mail*"
+                 name="email"
+                 type="email" />
       </label>
 
       <label :class="b('label')">
-        <span :class="b('label-text')">Telefon</span>
-        <input v-model="form.phone"
-               :class="b('input', { text: true })"
-               name="phone"
-               type="text">
+<!--        <span :class="b('label-text')">Telefon</span>-->
+        <e-input v-model="form.phone"
+                 label="Telefon"
+                 name="phone"
+                 type="text" />
       </label>
 
       <label :class="b('label')">
@@ -48,10 +48,13 @@
 
 <script>
   import googleRecaptcha from '../helpers/google-recaptcha';
+  import eInput from './e-input';
 
   export default {
     name: 'c-contact-form',
-    // components: {},
+    components: {
+      eInput,
+    },
     // mixins: [],
 
     // props: {},
