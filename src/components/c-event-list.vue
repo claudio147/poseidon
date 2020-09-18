@@ -44,7 +44,10 @@
         <li v-for="event in pastEvents"
             :key="event.id"
             :class="b('item')">
-          <div :style="{ backgroundImage: `url('${event.image}')` }"
+          <div v-lazy:background-image="{
+                 src: event.image.webP,
+                 error: event.image.src,
+               }"
                :class="b('image', { past: true })"></div>
           <div :class="b('content', { past: true })">
             <span :class="b('date')">
