@@ -55,13 +55,15 @@
 
     computed: {
       /**
-       * Gets the list of images.
+       * Gets the list of images and sorts them by date.
        *
        * @returns {Array.<Object>}
        */
       galleries() {
-        return this.$store.getters.galleryImages || [];
-      }
+        const groups = this.$store.getters.galleryImages || [];
+
+        return groups.sort((itemA, itemB) => new Date(itemB.date) - new Date(itemA.date));
+      },
     },
     // watch: {},
 

@@ -360,6 +360,7 @@ const store = new Vuex.Store({
               id: story.uuid,
               title: story.content.title,
               text: story.content.description,
+              date: story.content.date || '2000-01-01 00:00',
               images: story.content.images.map(image => ({
                 url: image.filename,
                 thumbnailUrl: `https://img2.storyblok.com/540x540/smart/${image.filename.split('//a.storyblok.com/')[1]}`,
