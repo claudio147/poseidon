@@ -62,7 +62,7 @@
       galleries() {
         const groups = this.$store.getters.galleryImages || [];
 
-        return groups.sort((itemA, itemB) => new Date(itemB.date) - new Date(itemA.date));
+        return groups.sort((itemA, itemB) => itemB.date - itemA.date);
       },
     },
     // watch: {},
