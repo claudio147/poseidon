@@ -50,18 +50,14 @@
 
 <script>
   import marked from 'marked/marked.min.js';
-  import eIcon from '../components/e-icon';
-  import cSlider from '../components/c-slider';
-  import cNewsList from '../components/c-news-list';
-  import CEventList from '../components/c-event-list';
 
   export default {
     name: 'home',
     components: {
-      CEventList,
-      eIcon,
-      cSlider,
-      cNewsList,
+      eIcon: () => import('../components/e-icon'),
+      cSlider: () => import('../components/c-slider'),
+      cEventList: () => import('../components/c-event-list'),
+      cNewsList: () => import('../components/c-news-list'),
     },
 
     metaInfo: {

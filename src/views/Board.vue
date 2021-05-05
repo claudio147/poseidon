@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import cLeadingBoard from '../components/c-leading-board';
 
   /**
    * Renders the news overview page.
@@ -35,7 +34,7 @@
       ]
     },
     components: {
-      cLeadingBoard,
+      cLeadingBoard: () => import('../components/c-leading-board'),
     },
     // mixins: [],
 

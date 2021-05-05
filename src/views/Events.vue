@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import cEventList from '../components/c-event-list';
 
   /**
    * Renders the news overview page.
@@ -35,7 +34,7 @@
       ]
     },
     components: {
-      cEventList,
+      cEventList: () => import('../components/c-event-list'),
     },
     // mixins: [],
 

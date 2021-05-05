@@ -21,12 +21,14 @@
 </template>
 
 <script>
-  import cImageGallery from '../components/c-image-gallery';
 
+  /**
+   * Renders a gallery page.
+   */
   export default {
     name: 'gallery',
     components: {
-      cImageGallery,
+      cImageGallery: () => import('../components/c-image-gallery'),
     },
 
     metaInfo: {

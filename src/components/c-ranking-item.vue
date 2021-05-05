@@ -30,7 +30,6 @@
 </template>
 
 <script>
-  import eIcon from './e-icon';
 
   /**
    * Renders the CMS component for rankings.
@@ -38,7 +37,7 @@
   export default {
     name: 'c-ranking-item',
     components: {
-      eIcon,
+      eIcon: () => import('../components/e-icon'),
     },
     // mixins: [],
 

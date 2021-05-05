@@ -31,9 +31,7 @@
 
 <script>
   import marked from 'marked/marked.min.js';
-  import VueGoodshareFacebook from 'vue-goodshare/src/providers/Facebook.vue';
   import news from '../mixins/news';
-  import cRankingItem from '../components/c-ranking-item';
 
   /**
    * News detail page.
@@ -41,8 +39,8 @@
   export default {
     name: 'news-detail',
     components: {
-      cRankingItem,
-      VueGoodshareFacebook,
+      cRankingItem: () => import('../components/c-ranking-item'),
+      VueGoodshareFacebook: () => import('vue-goodshare/src/providers/Facebook.vue'),
     },
     mixins: [
       news,

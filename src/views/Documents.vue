@@ -11,7 +11,6 @@
 </template>
 
 <script>
-  import cDocumentList from '../components/c-document-list';
 
   /**
    * View for the document downloads.
@@ -36,7 +35,7 @@
       };
     },
     components: {
-      cDocumentList,
+      cDocumentList: () => import('../components/c-document-list'),
     },
     // mixins: [],
 

@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import cLinkList from '../components/c-link-list';
 
   /**
    * Renders the news overview page.
@@ -35,7 +34,7 @@
       ]
     },
     components: {
-      cLinkList,
+      cLinkList: () => import('../components/c-link-list'),
     },
     // mixins: [],
 

@@ -13,7 +13,6 @@
 
 <script>
   import marked from 'marked/marked.min';
-  import cSlider from '../components/c-slider';
 
   export default {
     name: 'organisation',
@@ -36,7 +35,7 @@
       ]
     },
     components: {
-      cSlider,
+      cSlider: () => import('../components/c-slider'),
     },
     // mixins: [],
 

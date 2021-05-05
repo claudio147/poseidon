@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  import cNewsList from '../components/c-news-list';
 
   /**
    * Renders the news overview page.
@@ -35,7 +34,7 @@
       ]
     },
     components: {
-      cNewsList,
+      cNewsList: () => import('../components/c-news-list'),
     },
     // mixins: [],
 

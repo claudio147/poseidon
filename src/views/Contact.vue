@@ -27,8 +27,10 @@
 </template>
 
 <script>
-  import cContactForm from '../components/c-contact-form';
 
+  /**
+   * Renders a contact page.
+   */
   export default {
     name: 'contact',
     metaInfo: {
@@ -47,7 +49,7 @@
       ]
     },
     components: {
-      cContactForm,
+      cContactForm: () => import('../components/c-contact-form'),
     },
     // components: {},
     // mixins: [],

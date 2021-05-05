@@ -14,14 +14,12 @@
 </template>
 
 <script>
-  import cMilestones from '../components/c-milestones';
-  import cSlider from '../components/c-slider';
 
   export default {
     name: 'history',
     components: {
-      cMilestones,
-      cSlider,
+      cMilestones: () => import('../components/c-milestones'),
+      cSlider: () => import('../components/c-slider'),
     },
     metaInfo: {
       title: 'Geschichte',

@@ -32,7 +32,6 @@
 </template>
 
 <script>
-  import eIcon from '../components/e-icon';
 
   /**
    * Component renders a person.
@@ -40,7 +39,7 @@
   export default {
     name: 'c-person',
     components: {
-      eIcon,
+      eIcon: () => import('../components/e-icon'),
     },
     // mixins: [],
 

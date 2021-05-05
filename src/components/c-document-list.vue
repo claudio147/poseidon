@@ -19,7 +19,6 @@
 </template>
 
 <script>
-  import eIcon from './e-icon';
 
   /**
    * Renders a list of download files.
@@ -27,7 +26,7 @@
   export default {
     name: 'c-document-list',
     components: {
-      eIcon,
+      eIcon: () => import('../components/e-icon'),
     },
     // mixins: [],
 

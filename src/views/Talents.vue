@@ -46,16 +46,13 @@
 
 <script>
   import marked from 'marked/marked.min';
-  import eIcon from '../components/e-icon';
-  import cSlider from '../components/c-slider';
-  import cPerson from '../components/c-person';
 
   export default {
     name: 'talents',
     components: {
-      cPerson,
-      eIcon,
-      cSlider,
+      cPerson: () => import('../components/c-person'),
+      cSlider: () => import('../components/c-slider'),
+      eIcon: () => import('../components/e-icon'),
     },
     metaInfo: {
       title: 'Jungfischer',

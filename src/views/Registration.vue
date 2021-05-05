@@ -14,14 +14,12 @@
 </template>
 
 <script>
-  import cRegistrationForm from '../components/c-registration-form';
-  import cSlider from '../components/c-slider';
 
   export default {
     name: 'registration',
     components: {
-      cRegistrationForm,
-      cSlider,
+      cRegistrationForm: () => import('../components/c-registration-form'),
+      cSlider: () => import('../components/c-slider'),
     },
     metaInfo: {
       title: 'Anmeldung',

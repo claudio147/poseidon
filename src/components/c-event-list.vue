@@ -68,7 +68,6 @@
 
 <script>
   import marked from 'marked/marked.min.js';
-  import eIcon from './e-icon';
 
   /**
    * Component renders the list of events (past and next events).
@@ -76,7 +75,7 @@
   export default {
     name: 'c-event-list',
     components: {
-      eIcon
+      eIcon: () => import('../components/e-icon'),
     },
     // mixins: [],
 
