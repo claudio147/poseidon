@@ -15,27 +15,31 @@
  */
 
 const functions = require('firebase-functions');
+const { defineSecret } = require('firebase-functions/params');
 const nodemailer = require('nodemailer');
 const axios = require('axios');
 
+const emailUser = defineSecret('HOSTSTAR_CONTACT_EMAIL');
+const emailPW = defineSecret('HOSTSTAR_CONTACT_PW');
+
 // Configure the email transport using the default SMTP transport and a GMail account.
 // For other types of transports such as Sendgrid see https://nodemailer.com/transports/
-const senderEmail = functions.config().gmail.login;
-const mailTransport = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 465,
-  secure: true,
+// eslint-disable-next-line require-jsdoc
+const mailTransport = (user, pass) => nodemailer.createTransport({
+  host: 'lx53.hoststar.hosting',
+  port: 587,
+  secure: false,
   auth: {
-    type: 'OAuth2',
-    clientId: '118839792184-ff44lc3kp5k4c6fipqv7ccsger6ji3ef.apps.googleusercontent.com',
-    clientSecret: 'BG5ymEISPdu4eGSC0yyTg4c0'
+    user,
+    pass
   }
 });
 
 /**
  * CONTACT || E-mail to web administrator.
  */
-exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
+// eslint-disable-next-line max-len
+exports.sendAdminContactRequest = functions.runWith({ secrets: [emailUser, emailPW] }).database.ref('/contacts/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -79,15 +83,10 @@ exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWr
 </body>
 </html>
 `,
-    auth: {
-      user: senderEmail,
-      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
-      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
-    }
   };
 
   try {
-    await mailTransport.sendMail(mailOptions);
+    await mailTransport(process.env.HOSTSTAR_CONTACT_EMAIL, process.env.HOSTSTAR_CONTACT_PW).sendMail(mailOptions);
   } catch (error) {
     console.error('There was an error while sending the email:', error);
   }
@@ -98,7 +97,8 @@ exports.sendAdminContactRequest = functions.database.ref('/contacts/{uid}').onWr
 /**
  * CONTACT || Confirmation E-mail to user.
  */
-exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWrite(async(change) => {
+// eslint-disable-next-line max-len
+exports.sendUserContactRequest = functions.runWith({ secrets: [emailUser, emailPW] }).database.ref('/contacts/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -125,15 +125,10 @@ exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWri
       '  <p>Ihr Fischereiverein Romanshorn</p>\n' +
       '</body>\n' +
       '</html>\n',
-    auth: {
-      user: senderEmail,
-      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
-      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
-    }
   };
 
   try {
-    await mailTransport.sendMail(mailOptions);
+    await mailTransport(process.env.HOSTSTAR_CONTACT_EMAIL, process.env.HOSTSTAR_CONTACT_PW).sendMail(mailOptions);
   } catch (error) {
     console.error('There was an error while sending the email:', error);
   }
@@ -144,7 +139,8 @@ exports.sendUserContactRequest = functions.database.ref('/contacts/{uid}').onWri
 /**
  * REGISTRATION || Confirmation E-mail to user.
  */
-exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+// eslint-disable-next-line max-len
+exports.sendAdminRegistrationRequest = functions.runWith({ secrets: [emailUser, emailPW] }).database.ref('/registration/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -212,15 +208,10 @@ exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{ui
 </body>
 </html>
 `,
-    auth: {
-      user: senderEmail,
-      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
-      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
-    }
   };
 
   try {
-    await mailTransport.sendMail(mailOptions);
+    await mailTransport(process.env.HOSTSTAR_CONTACT_EMAIL, process.env.HOSTSTAR_CONTACT_PW).sendMail(mailOptions);
   } catch (error) {
     console.error('There was an error while sending the email:', error);
   }
@@ -231,7 +222,8 @@ exports.sendAdminRegistrationRequest = functions.database.ref('/registration/{ui
 /**
  * Registration || Confirmation E-mail to user.
  */
-exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid}').onWrite(async(change) => {
+// eslint-disable-next-line max-len
+exports.sendUserRegistrationRequest = functions.runWith({ secrets: [emailUser, emailPW] }).database.ref('/registration/{uid}').onWrite(async(change) => {
   const snapshot = change.after;
   const val = snapshot.val();
 
@@ -258,15 +250,10 @@ exports.sendUserRegistrationRequest = functions.database.ref('/registration/{uid
       '  <p>Ihr Fischereiverein Romanshorn</p>\n' +
       '</body>\n' +
       '</html>\n',
-    auth: {
-      user: senderEmail,
-      refreshToken: '1//04omSTE0YpZP5CgYIARAAGAQSNwF-L9IrMcYg24aj1-HnzItRfq0Z5h59ocLrXJiEJB4trYt-v14u2uaSg81MBQfNddezGYTt6GY',
-      accessToken: 'ya29.a0AfH6SMCiZ8lpdf_3oQ4dfbURtNyHcOyNxU3z-LOq1dKBRz28drRZMoBwNXJx3bcgHIHdWjepyEX_BbcRFonNgoEbi912j57RfI008hjFTEI1_DyRRx9kJYGUyNiqYgYwoas4kiWCnTyZO__zpeP6klnciAzVt6Rl96A',
-    }
   };
 
   try {
-    await mailTransport.sendMail(mailOptions);
+    await mailTransport(process.env.HOSTSTAR_CONTACT_EMAIL, process.env.HOSTSTAR_CONTACT_PW).sendMail(mailOptions);
   } catch (error) {
     console.error('There was an error while sending the email:', error);
   }
